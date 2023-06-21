@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
+import Link from 'next/link'
 
 const Navbar = () => {
   const { data: session, status } = useSession()
@@ -25,12 +26,13 @@ const Navbar = () => {
         </div>
         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-            <li>
-              <a href="#" className="block py-2 pl-3 pr-4 text-secondary rounded md:bg-transparent md:p-0" aria-current="page">Home</a>
-            </li>
-            <li>
-              <a href="#" className="block py-2 pl-3 pr-4 text-secondary rounded md:bg-transparent md:p-0">Recipes</a>
-            </li>
+            <Link href="/" className='block py-2 pl-3 pr-4 text-secondary rounded md:bg-transparent md:p-0'>
+              Home
+            </Link>
+            <Link href="/recipes" className='block py-2 pl-3 pr-4 text-secondary rounded md:bg-transparent md:p-0'>
+              Recipes
+            </Link>
+
           </ul>
         </div>
       </div>
