@@ -1,6 +1,4 @@
 export async function getRecipes() {
-  console.log('getting recipes')
-  console.log(process.env.NEXT_PUBLIC_RAPID_API_KEY)
   const q = ''
   const headers: HeadersInit = {
     'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
@@ -18,8 +16,7 @@ export async function getRecipes() {
   return result
 }
 
-export async function getRecipeInfo(id) {
-  console.log('getting recipes')
+export async function getRecipeInfo(id: {id: number}) {
   console.log(process.env.NEXT_PUBLIC_RAPID_API_KEY)
   const q = ''
   const headers: HeadersInit = {

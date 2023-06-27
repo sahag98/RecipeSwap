@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body className={inter.className}>
-          <div>
+          <div className='lg:mx-64 mx-5'>
             <Navbar />
             {children}
           </div>

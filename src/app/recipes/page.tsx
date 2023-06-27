@@ -11,11 +11,10 @@ type RecipeProps = {
 
 const Recipes = async () => {
   const recipes = await getRecipes()
-  console.log(recipes)
 
   return (
     <main className='mx-auto'>
-      <h1>Recipes:</h1>
+      <h1 className='text-center font-bold text-xl mb-5'>Recipes:</h1>
       <div className='flex flex-wrap gap-7 justify-center'>
         {recipes.results?.map((recipe: RecipeProps) => (
           <RecipeItems recipe={recipe} />
