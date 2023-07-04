@@ -2,8 +2,9 @@
 import { getRecipeInfo } from '@/utils'
 import Image from 'next/image'
 import React from 'react'
+import parse from 'html-react-parser';
 
-type searchParamProps= {
+export type searchParamProps= {
   id: number,
 }
 
@@ -28,7 +29,6 @@ const page = async ({params}: {params: searchParamProps}) => {
       <p>{servings}</p>
       </div>
       </section>
-      
       <section className='flex-1 flex flex-col gap-3'>
        
      <div>
@@ -37,9 +37,8 @@ const page = async ({params}: {params: searchParamProps}) => {
      </div>
      <div>
      <h1 className='font-bold'>Summary:</h1>
-      <p className='leading-7 text-justify'>{summary}</p>
+      <p className='leading-7 text-justify'>{parse(summary)}</p>
      </div>
-      
       </section>
     </div>
   )

@@ -5,7 +5,7 @@ export async function getRecipes() {
     'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
   }
 
-  const response = await fetch('https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
+  const response = await fetch('https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?number=100',
     {
       headers: headers
     }
@@ -16,7 +16,7 @@ export async function getRecipes() {
   return result
 }
 
-export async function getRecipeInfo(id: {id: number}) {
+export async function getRecipeInfo(id:{id:number}) {
   console.log(process.env.NEXT_PUBLIC_RAPID_API_KEY)
   const q = ''
   const headers: HeadersInit = {

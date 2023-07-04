@@ -1,8 +1,9 @@
-"use client"
+// "use client"
 import React from 'react'
 import Image from 'next/image'
 import { getRecipeInfo } from '@/utils';
 import Link from 'next/link';
+
 type RecipeProps = {
   id: number;
   title: string;
@@ -11,8 +12,7 @@ type RecipeProps = {
 }
 
 const RecipeItems = ({ recipe }: { recipe: RecipeProps }) => {
-
-  const { title, id, image, imageType } = recipe
+  const { title, id, image } = recipe
   return (
       <div className='bg-slate-100 flex flex-col justify-between w-80 p-3 gap-5 rounded-md'>
         <h2 className='font-semibold'>{title}</h2>
