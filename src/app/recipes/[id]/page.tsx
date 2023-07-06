@@ -16,7 +16,7 @@ const page = async ({params}: {params: searchParamProps}) => {
   return (
     <div className='lg:flex gap-10 mt-10'>
       <section className='flex flex-col flex-2 gap-2'>
-      <Image className='object-contain rounded-md' src={image} alt={`${title} picture`} width={450} height={450}  />
+      <Image loading='lazy' className='object-contain rounded-md' src={image} alt={`${title} picture`} width={450} height={450}  />
       <div>
         <h1 className='font-bold text-secondary'>Recipe Name:</h1>
       <h2>{title}</h2>

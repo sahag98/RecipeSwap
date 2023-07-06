@@ -2,6 +2,7 @@ import CustomFilter from '@/components/CustomFilter';
 import RecipeItems from '@/components/RecipeItems'
 import { getRecipes } from '@/utils'
 import React from 'react'
+import { Suspense } from 'react'
 
 type RecipeProps = {
   id: number;
@@ -33,7 +34,7 @@ const Recipes = async ({searchParams} : {searchParams : HomeProps}) => {
         {recipes.results?.map((recipe: RecipeProps) => (
           <RecipeItems recipe={recipe} />
         ))}
-        </div>
+      </div>
     </main>
   )
 }
