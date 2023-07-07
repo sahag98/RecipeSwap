@@ -24,3 +24,13 @@ export const cuisines = [
   "caribbean",
   "latin american",
 ];
+
+export const diets = [
+  "pescetarian",
+  "lacto vegetarian",
+  "ovo vegetarian",
+  "vegan",
+  "paleo",
+  "primal",
+  "vegetarian",
+];

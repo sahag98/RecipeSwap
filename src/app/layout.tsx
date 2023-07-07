@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import AuthProvider from '@/components/AuthProvider'
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <div className='lg:mx-64 mx-5'>
             <Navbar />
+            <NextTopLoader color='#E0777D' showSpinner={false} />
             {children}
           </div>
         </body>

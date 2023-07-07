@@ -1,5 +1,12 @@
-export async function getRecipes({ cuisines }: { cuisines: string }) {
-  console.log("cuisine in get recipe ", cuisines);
+import { __String } from "typescript";
+
+export async function getRecipes({
+  cuisines,
+  diets,
+}: {
+  cuisines: string;
+  diets: string;
+}) {
   const q = "";
   const headers: HeadersInit = {
     "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
@@ -7,7 +14,7 @@ export async function getRecipes({ cuisines }: { cuisines: string }) {
   };
 
   const response = await fetch(
-    `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?number=100&cuisine=${cuisines}`,
+    `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?number=100&cuisine=${cuisines}&diet=${diets}`,
     {
       headers: headers,
     }
@@ -32,7 +39,6 @@ export const updateSearchParams = (type: string, value: string) => {
 };
 
 export async function getRecipeInfo(id: { id: number }) {
-  console.log(process.env.NEXT_PUBLIC_RAPID_API_KEY);
   const q = "";
   const headers: HeadersInit = {
     "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY || "",

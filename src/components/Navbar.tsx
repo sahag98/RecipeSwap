@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Navbar = () => {
   const { data: session, status } = useSession()
-  console.log(status)
+
   return (
     <nav className="w-full z-20">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -20,7 +20,7 @@ const Navbar = () => {
         <button
             type="button"
             onClick={() => signOut()}
-            className="text-accent border border-accent font-medium rounded-lg h-10 text-sm px-4 text-center mr-3 md:mr-0">
+            className="text-accent border border-accent hover:bg-accent hover:text-white font-medium rounded-lg h-10 text-sm px-4 text-center mr-3 md:mr-0">
             Log out
           </button>
           </div>
