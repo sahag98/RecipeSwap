@@ -4,6 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 import parse from 'html-react-parser';
 import {AiOutlineHeart} from 'react-icons/ai'
+import ScrollTop from '@/components/ScrollTop';
 
 export type searchParamProps= {
   id: number,
@@ -15,6 +16,7 @@ const page = async ({params}: {params: searchParamProps}) => {
   const {title, readyInMinutes, servings, sourceUrl, image, summary,instructions} = recipesInfo
   return (
     <div className='lg:flex gap-10 mt-10'>
+      <ScrollTop />
       <section className='flex flex-col flex-2 gap-2'>
       <Image loading='lazy' className='object-contain rounded-md' src={image} alt={`${title} picture`} width={450} height={450}  />
       <div>
@@ -29,11 +31,10 @@ const page = async ({params}: {params: searchParamProps}) => {
       <h1 className='font-bold text-secondary'>Servings:</h1>
       <p>{servings}</p>
       </div>
-      <div className='w-full bg-accent flex rounded-md cursor-pointer hover:bg-[#5ba1ca] items-center justify-center gap-2'>
+      <div className='w-full bg-accent mb-2 flex rounded-md cursor-pointer hover:bg-[#5ba1ca] items-center justify-center gap-2'>
         <AiOutlineHeart size={28} color='white' />
       <button className=' text-white py-2'>Add to Favorites</button>
       </div>
-      
       </section>
       <section className='flex-1 flex flex-col gap-3'>
        

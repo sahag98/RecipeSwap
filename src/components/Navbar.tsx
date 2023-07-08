@@ -1,59 +1,124 @@
 "use client"
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
 import Link from 'next/link'
 import Image from 'next/image'
+import { Menu, Transition } from '@headlessui/react'
+import {BsChevronDown} from 'react-icons/bs'
+import {RxExit} from 'react-icons/rx'
+import {BiFoodMenu,BiStar} from 'react-icons/bi'
 
 const Navbar = () => {
   const { data: session, status } = useSession()
+ 
 
   return (
-    <nav className="w-full z-20">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link href='/' className="flex items-center">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap cursor-pointer dark:text-white">RecipeSwap</span>
-        </Link>
-        <div className="flex md:order-2">
-        {status === 'authenticated' ?
-        <div className='flex items-center gap-3'>
-        <Image className='rounded-full' src={session?.user?.image} width={40} height={40} />
-        <button
-            type="button"
-            onClick={() => signOut()}
-            className="text-accent border border-accent hover:bg-accent hover:text-white font-medium rounded-lg h-10 text-sm px-4 text-center mr-3 md:mr-0">
-            Log out
-          </button>
-          </div>
-        :
-        <button
-            type="button"
-            onClick={() => signIn("google")}
-            className="text-white bg-accent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">
-            Login
-          </button>
-        }
+   <nav className='py-4 relative flex items-center justify-between border-b  border-[#f6d7d9]'>
+    <Link href='/'>
+    <h1 className='font-bold text-lg lg:text-2xl'>RecipeSwap</h1>
+    </Link>
+    <ul className=' hidden lg:flex items-center gap-5'>
+      <Link href='/recipes'>
+      <li className='font-medium text-sm lg:text-base text-secondary'>
+        Recipes
+      </li>
+      </Link>
+      <Link href="/favorites">
+      <li className='font-medium text-sm lg:text-base text-secondary'>
+        Favorites
+      </li>
+      </Link>
+    </ul>
+    <div className="z-20 text-right">
+      <Menu as="div" className="relative inline-block text-left">
+        <div>
+          {status == 'authenticated' ? 
+          <Menu.Button className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+           <Image src={session?.user?.image} width={32} height={32} alt='' className='rounded-full' />
+            <BsChevronDown className="ml-2 -mr-1 text-accent h-5 w-5"
+              aria-hidden="true" />
+          </Menu.Button>
+          :
+          <button onClick={()=>signIn('google')} className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-20 px-4 py-3 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <h2 className='text-accent font-semibold'>Sign In</h2>
+         </button>
+          }
+        </div>
+        <Transition
+          as={Fragment}
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-95"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-75"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-95"
+        >
+          <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-[#e0e0e0] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="p-2 ">
+            <Link href='/recipes'>
+            <Menu.Item as='div' className='lg:hidden'>
+                {({ active }) => (
+                  <button
+                  
+                    className={`${
+                      active ? 'bg-accent text-white text-base font-medium' : 'text-gray-900'
+                    } group flex w-full items-center rounded-md  text-base px-2 py-2 font-medium`}
+                  >
+                    {active ? (
+                      <BiFoodMenu className='mr-4 h-6 w-6' />
+                    ) : (
+                      <BiFoodMenu className='mr-4 h-6 w-6' />
+                    )}
+                    Recipes
+                  </button>
+                )}
+              </Menu.Item>
+              </Link>
+              <Link href='/favorites'>
+              <Menu.Item as='div' className='lg:hidden'>
+                {({ active }) => (
+                  <button
+                  
+                   className={`${
+                    active ? 'bg-accent text-white font-medium' : 'text-gray-900'
+                  } group flex w-full items-center rounded-md px-2 py-2 font-medium`}
+                  >
+                    {active ? (
+                     <BiStar className='mr-4 h-6 w-6' />
+                    ) : (
+                      <BiStar className='mr-4 h-6 w-6' />
+                    )}
+                    Favorites
+                  </button>
+                )}
+              </Menu.Item>
+              </Link>
+              <Menu.Item>
+                {({ active }) => (
+                  
+                  <button
+                   onClick={()=>signOut()}
+                   className={`${
+                    active ? 'bg-accent text-white font-medium' : 'text-gray-900'
+                  } group flex w-full items-center rounded-md px-2 py-2 font-medium`}
+                  >
+                    {active ? (
+                     <RxExit className='mr-4 h-6 w-6' />
+                    ) : (
+                      <RxExit className='mr-4 h-6 w-6' />
+                    )}
+                    Sign Out
+                  </button>
+                )}
+              </Menu.Item>
+              
           
-          <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-            <span className="sr-only">Open main menu</span>
-            <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
-          </button>
-        </div>
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-            <Link href="/" className='block py-2 pl-3 pr-4 text-secondary rounded md:bg-transparent md:p-0'>
-              Home
-            </Link>
-            <Link href="/recipes" className='block py-2 pl-3 pr-4 text-secondary rounded md:bg-transparent md:p-0'>
-              Recipes
-            </Link>
-            <Link href="/favorites" className='block py-2 pl-3 pr-4 text-secondary rounded md:bg-transparent md:p-0'>
-              Your favorites
-            </Link>
-          </ul>
-        </div>
-      </div>
-    </nav>
+            </div>
+          </Menu.Items>
+        </Transition>
+      </Menu>
+    </div>
+   </nav>
 
   )
 }

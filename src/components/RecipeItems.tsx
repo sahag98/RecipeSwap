@@ -14,7 +14,7 @@ type RecipeProps = {
 const RecipeItems = ({ recipe }: { recipe: RecipeProps }) => {
   const { title, id, image } = recipe
   return (
-      <div className='bg-slate-100  flex flex-col justify-between w-80 p-3 gap-5 rounded-md'>
+      <div className='bg-[#dce8ef] shadow-lg shadow-accent/25 flex flex-col justify-between lg:w-80 p-3 gap-5 rounded-md'>
         <h2 className='font-semibold'>{title}</h2>
         <Image className='object-contain rounded-sm' src={image} alt='food-image' width={500} height={300} />
         <Link href={`/recipes/${id}`}>

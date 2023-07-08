@@ -30,19 +30,18 @@ const Recipes = async ({searchParams} : {searchParams : HomeProps}) => {
   })
 
   return (
-    <main className='mx-auto relative p-3'>
+    <main className='mx-auto relative'>
       <div className='flex justify-between mb-10'>
-      <h1 className='text-center font-bold text-xl mt-2'>Recipes:</h1>
-      <div className='flex absolute lg:hidden gap-5 mt-8 top-3 right-4'>
+      <div className='flex absolute lg:hidden gap-5 right-0'>
       <CustomFilter title="cuisines" options={cuisines} />
       <CustomFilter title="diets"  options={diets} />
       </div>
-      <div className='hidden lg:flex absolute gap-5 top-3 right-3'>
+      <div className='hidden lg:flex absolute gap-5  right-0'>
       <CustomFilter title="cuisines" options={cuisines} />
       <CustomFilter title="diets"  options={diets} />
       </div>
       </div>
-      <div className='flex flex-wrap gap-7 justify-center'>
+      <div className='flex flex-wrap gap-7 justify-center lg:justify-between'>
         {recipes.results?.map((recipe: RecipeProps) => (
           <RecipeItems recipe={recipe} />
         ))}
