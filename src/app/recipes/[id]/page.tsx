@@ -7,7 +7,7 @@ import {AiOutlineHeart} from 'react-icons/ai'
 import ScrollTop from '@/components/ScrollTop';
 
 export type searchParamProps= {
-  id: number,
+  id: any;
 }
 
 const page = async ({params}: {params: searchParamProps}) => {
