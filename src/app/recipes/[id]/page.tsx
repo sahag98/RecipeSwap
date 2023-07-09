@@ -21,15 +21,15 @@ const page = async ({params}: {params: searchParamProps}) => {
       <Image loading='lazy' className='object-contain rounded-md' src={image} alt={`${title} picture`} width={450} height={450}  />
       <div>
         <h1 className='font-bold text-secondary'>Recipe Name:</h1>
-      <h2>{title}</h2>
+      <h2 className='font-medium'>{title}</h2>
         </div>
         <div>
       <h1 className='font-bold text-secondary'>Ready In:</h1>
-      <p>{readyInMinutes} mins</p>
+      <p className='font-medium'>{readyInMinutes} mins</p>
       </div>
       <div>
       <h1 className='font-bold text-secondary'>Servings:</h1>
-      <p>{servings}</p>
+      <p className='font-medium'>{servings}</p>
       </div>
       <div className='w-full bg-accent mb-2 flex rounded-md cursor-pointer hover:bg-[#5ba1ca] items-center justify-center gap-2'>
         <AiOutlineHeart size={28} color='white' />

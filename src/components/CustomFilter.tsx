@@ -1,35 +1,42 @@
 "use client"
-import React, { Fragment, useState } from 'react'
+import React, { Dispatch, Fragment, SetStateAction, useState } from 'react'
 import { Listbox, Transition } from "@headlessui/react";
 
 import { useRouter } from "next/navigation";
 import {BsChevronDown} from 'react-icons/bs'
 import { updateSearchParams } from '@/utils';
 
+type CustomFilterProps = {
+  options: string[];
+  title: string;
+}
 
-const CustomFilter = ({options, title}) => {
+const CustomFilter = ({options, title} : CustomFilterProps) => {
  
   const [selected, setSelected] = useState(options[0])
   const router = useRouter();
 
-  const handleUpdateParams = (e: {e:any}) => {
+  const handleUpdateParams = (e : string) => {
     console.log(e)
-    const newPathName = updateSearchParams(title,e);
- 
+
+
+      const newPathName = updateSearchParams(title,e);
     router.push(newPathName);
   };
+  // console.log(selected)
   return (
     <div>
       <Listbox
         value={selected}
         onChange={(e) => {
+
           setSelected(e); // Update the selected option in state
           handleUpdateParams(e); // Update the URL search parameters and navigate to the new URL
         }}
       >
-        <div className='rounded-md  z-10'>
+        <div className='rounded-md z-10'>
           {/* Button for the listbox */}
-          <Listbox.Button className='flex items-center justify-between p-2 rounded-md border border-accent w-fit'>
+          <Listbox.Button className='flex lg:w-44 w-40 items-center justify-between p-2 rounded-md border border-accent'>
             <span className='block truncate font-medium mr-2'>{selected}</span>
             <BsChevronDown />
             {/* <Image src='/chevron-up-down.svg' width={20} height={20} className='ml-4 object-contain' alt='chevron_up-down' /> */}
@@ -41,7 +48,7 @@ const CustomFilter = ({options, title}) => {
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
-            <Listbox.Options className='w-40 bg-slate-100 border rounded-md border-accent'>
+            <Listbox.Options className=' lg:w-44 w-40 h-44 overflow-y-auto border rounded-md border-accent'>
               {/* Map over the options and display them as listbox options */}
               {options.map((option) => (
                 <Listbox.Option

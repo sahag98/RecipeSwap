@@ -13,7 +13,7 @@ const Navbar = () => {
  
 
   return (
-   <nav className='py-4 relative flex items-center justify-between border-b  border-[#f6d7d9]'>
+   <nav className='py-2 relative flex items-center justify-between border-b  border-[#f6d7d9]'>
     <Link href='/'>
     <h1 className='font-bold text-lg lg:text-2xl'>RecipeSwap</h1>
     </Link>
@@ -33,8 +33,8 @@ const Navbar = () => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           {status == 'authenticated' ? 
-          <Menu.Button className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-           <Image src={session?.user?.image} width={32} height={32} alt='' className='rounded-full' />
+          <Menu.Button className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-0 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+           <Image src={session?.user?.image!} width={32} height={32} alt='' className='rounded-full' />
             <BsChevronDown className="ml-2 -mr-1 text-accent h-5 w-5"
               aria-hidden="true" />
           </Menu.Button>
