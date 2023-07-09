@@ -13,7 +13,7 @@ const Navbar = () => {
  
 
   return (
-   <nav className='py-2 relative flex items-center justify-between border-b  border-[#f6d7d9]'>
+   <nav className='lg:py-2 lg:px-0 p-2 relative flex items-center justify-between border-b  border-[#f6d7d9]'>
     <Link href='/'>
     <h1 className='font-bold text-lg lg:text-2xl'>RecipeSwap</h1>
     </Link>

@@ -20,9 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body className={inter.className}>
-          <div className='lg:mx-64 relative mx-2'>
-            <Navbar />
-            <NextTopLoader color='#E0777D' showSpinner={false} />
+        <NextTopLoader color='#E0777D' showSpinner={false} />
+          <div className='lg:px-64 relative'>
+          <Navbar />
+          </div>
+          <div className='lg:px-64 relative px-2'>
+           
+           
             {children}
           </div>
         </body>
