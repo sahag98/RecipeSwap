@@ -53,10 +53,10 @@ const Navbar = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-[#e0e0e0] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute right-0 mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-primary shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="p-2 ">
             <Link href='/recipes'>
-            <Menu.Item as='div' className='lg:hidden'>
+            <Menu.Item as='div' className='lg:hidden mb-2'>
                 {({ active }) => (
                   <button
                   
@@ -75,7 +75,7 @@ const Navbar = () => {
               </Menu.Item>
               </Link>
               <Link href='/favorites'>
-              <Menu.Item as='div' className='lg:hidden'>
+              <Menu.Item as='div' className='lg:hidden mb-2'>
                 {({ active }) => (
                   <button
                   
