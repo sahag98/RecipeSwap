@@ -23,6 +23,11 @@ const Navbar = () => {
         Recipes
       </li>
       </Link>
+      <Link href='/create'>
+      <li className='font-medium text-sm lg:text-base text-secondary'>
+        Create A Recipe
+      </li>
+      </Link>
       <Link href="/favorites">
       <li className='hidden font-medium text-sm lg:text-base text-secondary'>
         Favorites
