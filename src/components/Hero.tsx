@@ -5,7 +5,7 @@ const Hero = () => {
   const [searchText, setSearchText] = useState('')
   return (
     <main className='flex items-center h-full justify-center flex-col gap-3'>
-      <h1 className='text-4xl font-bold text-secondary tracking-wider'>RecipeSwap</h1>
+      <h1 className='text-4xl font-bold bg-gradient-to-r from-sky-300 to-red-400 bg-clip-text text-transparent tracking-wider'>RecipeSwap</h1>
       <p className="mb-1 text-center">Share your recipes and search for the best ones.</p>
       <div className='flex items-center gap-3'>
         <input

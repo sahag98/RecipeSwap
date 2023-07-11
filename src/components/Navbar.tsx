@@ -15,16 +15,16 @@ const Navbar = () => {
   return (
    <nav className='lg:py-2 lg:px-0 p-2 relative flex items-center justify-between border-b  border-[#f6d7d9]'>
     <Link href='/'>
-    <h1 className='font-bold text-lg lg:text-2xl'>RecipeSwap</h1>
+    <h1 className='font-bold text-lg lg:text-2xl bg-gradient-to-r from-sky-300 to-red-400 bg-clip-text text-transparent'>RecipeSwap</h1>
     </Link>
-    <ul className=' hidden lg:flex items-center gap-5'>
+    <ul className='flex items-center gap-5'>
       <Link href='/recipes'>
       <li className='font-medium text-sm lg:text-base text-secondary'>
         Recipes
       </li>
       </Link>
       <Link href="/favorites">
-      <li className='font-medium text-sm lg:text-base text-secondary'>
+      <li className='hidden font-medium text-sm lg:text-base text-secondary'>
         Favorites
       </li>
       </Link>
