@@ -46,7 +46,7 @@ const CreateRecipe = () => {
       />
       <textarea
         className="border border-secondary rounded-md p-2"
-        placeholder="Enter Instructions of Recipe"
+        placeholder="Enter Instructions of Recipe:"
         value={instructions}
         onChange={(e) => setInstructions(e.target.value)}
       />
