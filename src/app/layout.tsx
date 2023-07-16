@@ -1,36 +1,53 @@
-import Navbar from '@/components/Navbar'
-import './globals.css'
-import { Inter } from 'next/font/google'
-import AuthProvider from '@/components/AuthProvider'
-import NextTopLoader from 'nextjs-toploader';
+import "server-only";
+import { Inter } from "next/font/google";
+import SupabaseListener from "../components/supabase-listener";
+import SupabaseProvider from "../components/supabase-provider";
+import Navbar from "@/components/Navbar";
+import "./globals.css";
+import { createServerClient } from "../utils/supabase-server";
+import NextTopLoader from "nextjs-toploader";
+import type { Database } from "@/types/supabase";
+import type { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 
-const inter = Inter({ subsets: ['latin'] })
+export type TypedSupabaseClient = SupabaseClient<Database>;
+const inter = Inter({ subsets: ["latin"] });
+// do not cache this layout
+export const revalidate = 0;
 
 export const metadata = {
-  title: 'RecipeSwap',
-  description: 'Swap recipes with people all around the world.',
-}
+  title: "RecipeSwap",
+  description: "Swap recipes with people all around the world.",
+};
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
+  const supabase = createServerClient();
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
   return (
     <html lang="en">
-      <AuthProvider>
-        <body className={inter.className}>
-        <NextTopLoader color='#E0777D' showSpinner={false} />
-          <div className='lg:px-64 relative'>
-          <Navbar />
+      {/*
+        <head /> will contain the components returned by the nearest parent
+        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
+      */}
+      <head />
+      <body className={inter.className}>
+        <SupabaseProvider session={session}>
+          <SupabaseListener serverAccessToken={session?.access_token} />
+
+          <NextTopLoader color="#E0777D" showSpinner={false} />
+          <div className="lg:px-64 relative">
+            <Navbar />
           </div>
-          <div className='lg:px-64 relative px-2'>
-           
-           
-            {children}
-          </div>
-        </body>
-      </AuthProvider>
+          <div className="lg:px-64 relative px-2">{children}</div>
+        </SupabaseProvider>
+      </body>
     </html>
-  )
+  );
 }
