@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import type { Database } from "@/types/supabase";
+// import type { Database } from "@/types/supabase";
 
 const CreateRecipe = () => {
-  const supabase = createClientComponentClient<Database>();
+  const supabase = createClientComponentClient();
   const [recipeName, setRecipeName] = useState("");
   const [summary, setSummary] = useState("");
   const [instructions, setInstructions] = useState("");

@@ -1,3 +1,3 @@
-import { Database } from "./supabase";
+// import { Database } from "./supabase";
 
-export type User = Database["public"]["Tables"]["profiles"]["Row"];
+// export type User = Database["public"]["Tables"]["profiles"]["Row"];
