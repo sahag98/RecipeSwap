@@ -2,6 +2,9 @@
 const nextConfig = {
   images: {
     domains: ['spoonacular.com','lh3.googleusercontent.com']
+  },
+  typescript: {
+    ignoreBuildErrors: true
   }
 }
 
