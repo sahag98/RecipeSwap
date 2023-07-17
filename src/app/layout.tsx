@@ -6,10 +6,10 @@ import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { createServerClient } from "../utils/supabase-server";
 import NextTopLoader from "nextjs-toploader";
-// import type { Database } from "@/types/supabase";
+import type { Database } from "@/types/supabase-types";
 import type { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 
-// export type TypedSupabaseClient = SupabaseClient<Database>;
+export type TypedSupabaseClient = SupabaseClient<Database>;
 const inter = Inter({ subsets: ["latin"] });
 // do not cache this layout
 export const revalidate = 0;

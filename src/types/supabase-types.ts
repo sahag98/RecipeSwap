@@ -78,6 +78,7 @@ export interface Database {
           readyInMinutes: number | null
           servings: number | null
           summary: string | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string | null
@@ -88,6 +89,7 @@ export interface Database {
           readyInMinutes?: number | null
           servings?: number | null
           summary?: string | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string | null
@@ -98,8 +100,16 @@ export interface Database {
           readyInMinutes?: number | null
           servings?: number | null
           summary?: string | null
+          user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "recipes_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

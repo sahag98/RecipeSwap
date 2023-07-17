@@ -5,19 +5,18 @@ import { useSupabase } from "./supabase-provider";
 import Image from "next/image";
 import { User } from "@supabase/supabase-js";
 import { Menu, Transition } from "@headlessui/react";
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown, BsFillPersonFill } from "react-icons/bs";
 import { RxExit } from "react-icons/rx";
 import { BiFoodMenu, BiStar } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { supabase, session } = useSupabase();
-
+  const router = useRouter();
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
-
     if (error) {
       console.log({ error });
     }
@@ -44,11 +43,13 @@ const Navbar = () => {
             Recipes
           </li>
         </Link>
-        <Link href="/create">
-          <li className="font-medium text-sm lg:text-base text-secondary">
-            Create A Recipe
-          </li>
-        </Link>
+        {session && (
+          <Link className="hidden lg:flex" href="/create">
+            <li className="font-medium text-sm lg:text-base text-secondary">
+              Create A Recipe
+            </li>
+          </Link>
+        )}
         <Link href="/favorites">
           <li className="hidden font-medium text-sm lg:text-base text-secondary">
             Favorites
@@ -109,6 +110,26 @@ const Navbar = () => {
                           <BiFoodMenu className="mr-4 h-6 w-6" />
                         )}
                         Recipes
+                      </button>
+                    )}
+                  </Menu.Item>
+                </Link>
+                <Link href="/profile">
+                  <Menu.Item as="div" className="mb-2">
+                    {({ active }) => (
+                      <button
+                        className={`${
+                          active
+                            ? "bg-accent text-white text-base font-medium"
+                            : "text-gray-900"
+                        } group flex w-full items-center rounded-md  text-base px-2 py-2 font-medium`}
+                      >
+                        {active ? (
+                          <BsFillPersonFill className="mr-4 h-6 w-6" />
+                        ) : (
+                          <BsFillPersonFill className="mr-4 h-6 w-6" />
+                        )}
+                        Profile
                       </button>
                     )}
                   </Menu.Item>

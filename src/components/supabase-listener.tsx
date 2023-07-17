@@ -4,10 +4,6 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSupabase } from "./supabase-provider";
 
-// this component handles refreshing server data when the user logs in or out
-// this method avoids the need to pass a session down to child components
-// in order to re-render when the user's session changes
-// #elegant!
 export default function SupabaseListener({
   serverAccessToken,
 }: {

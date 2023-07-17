@@ -1,16 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-// import type { Database } from "@/types/supabase";
+import { useSupabase } from "./supabase-provider";
 
 const CreateRecipe = () => {
-  const supabase = createClientComponentClient();
+  const { supabase, session } = useSupabase();
   const [recipeName, setRecipeName] = useState("");
   const [summary, setSummary] = useState("");
   const [instructions, setInstructions] = useState("");
   const [servings, setServings] = useState(0);
   const [readyIn, setReadyIn] = useState(0);
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
 
   async function handleAddRecipe(e: any) {
     e.preventDefault();
@@ -20,6 +19,7 @@ const CreateRecipe = () => {
       servings: servings,
       readyInMinutes: readyIn,
       summary: summary,
+      user_id: session?.user.id,
     });
     if (error) throw error;
     setSummary("");
