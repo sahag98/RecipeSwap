@@ -45,7 +45,7 @@ export default async function RootLayout({
           <div className="lg:px-64 relative">
             <Navbar />
           </div>
-          <div className="lg:px-64 relative px-2">{children}</div>
+          <div className="lg:px-64 relative px-4">{children}</div>
         </SupabaseProvider>
       </body>
     </html>
