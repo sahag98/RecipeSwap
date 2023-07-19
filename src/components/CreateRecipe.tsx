@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useSupabase } from "./supabase-provider";
+import { useRouter } from "next/navigation";
 
 const CreateRecipe = () => {
   const { supabase, session } = useSupabase();
@@ -10,6 +11,7 @@ const CreateRecipe = () => {
   const [servings, setServings] = useState(0);
   const [readyIn, setReadyIn] = useState(0);
   // const [image, setImage] = useState("");
+  const router = useRouter();
 
   async function handleAddRecipe(e: any) {
     e.preventDefault();
@@ -27,6 +29,7 @@ const CreateRecipe = () => {
     setRecipeName("");
     setServings(0);
     setInstructions("");
+    router.refresh();
   }
 
   return (
@@ -64,7 +67,7 @@ const CreateRecipe = () => {
         value={readyIn}
         onChange={(e) => setReadyIn(e.target.valueAsNumber)}
       />
-      <button className="bg-accent p-2 text-white rounded-md">Submit</button>
+      <button className="bg-accent p-3 text-white rounded-md">Submit</button>
     </form>
   );
 };

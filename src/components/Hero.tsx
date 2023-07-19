@@ -11,21 +11,21 @@ const Hero = () => {
         <Image
           src="/undraw_cooking_p7m1.svg"
           alt="hero img"
-          width={300}
-          height={300}
+          width={250}
+          height={250}
           className="mb-2"
         />
         <h1 className="lg:text-6xl text-5xl font-bold bg-gradient-to-r from-sky-300 to-red-400 bg-clip-text text-transparent tracking-wider">
           RecipeSwap
         </h1>
-        <p className="mb-1 text-md text-center font-medium">
+        <p className="mb-1 text-md text-center">
           Share your recipes and search for the best ones.
         </p>
         <div className="flex rounded-lg overflow-hidden items-center">
           <input
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className=" w-full h-10 placeholder-secondary outline-none p-2 bg-[#f9e7e8]"
+            className=" w-full lg:h-10 h-11 placeholder-secondary outline-none p-2 bg-[#f9e7e8]"
             type="text"
             placeholder="Search for a recipe"
           />

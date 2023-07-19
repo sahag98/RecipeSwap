@@ -11,7 +11,7 @@ const FavoriteButton = () => {
       <button
         onClick={() => console.log("clicked")}
         disabled={!session ? true : false}
-        className=" text-white py-2"
+        className=" text-white py-3"
       >
         Add to Favorites
       </button>

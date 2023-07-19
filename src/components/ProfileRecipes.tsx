@@ -20,8 +20,9 @@ const ProfileRecipes = ({
 }: {
   createdRecipes: createdRecipeProps;
 }) => {
+  console.log(createdRecipes);
   return (
-    <div className="border-secondary border rounded-sm py-4 px-2">
+    <div className="bg-secondary w-full rounded-xl py-4 px-2">
       {createdRecipes.image && (
         <Image
           alt={createdRecipes.name + "image"}
@@ -31,8 +32,11 @@ const ProfileRecipes = ({
         />
       )}
 
-      <h2 className="font-medium">{createdRecipes.name}</h2>
-      <span></span>
+      <h2 className="text-white font-medium">{createdRecipes.name}</h2>
+      <ul className="text-white font-light">
+        <li>Ready in {createdRecipes.readyInMinutes} minutes</li>
+        <li>{createdRecipes.servings} servings</li>
+      </ul>
     </div>
   );
 };

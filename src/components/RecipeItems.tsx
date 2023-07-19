@@ -24,7 +24,7 @@ const RecipeItems = ({ recipe }: { recipe: RecipeProps }) => {
       />
       <h2 className="font-semibold text-md">{title}</h2>
       <Link href={`/recipes/${id}`}>
-        <button className="bg-accent text-white rounded-md w-full p-2 hover:bg-[#5ba1ca]">
+        <button className="bg-accent text-white rounded-md w-full p-3 hover:bg-[#5ba1ca]">
           View Recipe
         </button>
       </Link>
