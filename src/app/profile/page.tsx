@@ -11,6 +11,8 @@ const Profile = async () => {
     data: { session },
   } = await supabase.auth.getSession();
 
+  console.log(session);
+
   console.log(session?.user.id);
   const { data: recipes } = await supabase
     .from("recipes")

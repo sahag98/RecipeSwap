@@ -34,9 +34,25 @@ export interface Database {
   }
   public: {
     Tables: {
+      array_table: {
+        Row: {
+          array_element: string[]
+          id: string
+        }
+        Insert: {
+          array_element?: string[]
+          id?: string
+        }
+        Update: {
+          array_element?: string[]
+          id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
+          favorites: string[] | null
           full_name: string | null
           id: string
           updated_at: string | null
@@ -45,6 +61,7 @@ export interface Database {
         }
         Insert: {
           avatar_url?: string | null
+          favorites?: string[] | null
           full_name?: string | null
           id: string
           updated_at?: string | null
@@ -53,6 +70,7 @@ export interface Database {
         }
         Update: {
           avatar_url?: string | null
+          favorites?: string[] | null
           full_name?: string | null
           id?: string
           updated_at?: string | null
@@ -71,36 +89,42 @@ export interface Database {
       recipes: {
         Row: {
           created_at: string | null
+          cuisine: string
+          diet: string
           id: number
-          image: string | null
-          instructions: string | null
-          name: string | null
-          readyInMinutes: number | null
+          image: string
+          instructions: string
+          name: string
+          readyInMinutes: number
           servings: number | null
-          summary: string | null
-          user_id: string | null
+          summary: string
+          user_id: string
         }
         Insert: {
           created_at?: string | null
+          cuisine: string
+          diet: string
           id?: number
-          image?: string | null
-          instructions?: string | null
-          name?: string | null
-          readyInMinutes?: number | null
+          image: string
+          instructions: string
+          name: string
+          readyInMinutes: number
           servings?: number | null
-          summary?: string | null
-          user_id?: string | null
+          summary: string
+          user_id: string
         }
         Update: {
           created_at?: string | null
+          cuisine?: string
+          diet?: string
           id?: number
-          image?: string | null
-          instructions?: string | null
-          name?: string | null
-          readyInMinutes?: number | null
+          image?: string
+          instructions?: string
+          name?: string
+          readyInMinutes?: number
           servings?: number | null
-          summary?: string | null
-          user_id?: string | null
+          summary?: string
+          user_id?: string
         }
         Relationships: [
           {
@@ -116,7 +140,27 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      append_array:
+        | {
+            Args: {
+              new_element: string
+            }
+            Returns: undefined
+          }
+        | {
+            Args: {
+              new_element: string
+              id: string
+            }
+            Returns: undefined
+          }
+      remove_array: {
+        Args: {
+          new_element: string
+          id: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
