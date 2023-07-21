@@ -26,6 +26,7 @@ const CreateRecipe = () => {
   async function handleUpload(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
+      setUploading(true);
       if (!file) {
         throw new Error("You must select an image to upload.");
       }
@@ -79,11 +80,12 @@ const CreateRecipe = () => {
       setServings(0);
       setInstructions("");
       setFile(null);
-      router.refresh();
 
       // console.log("Image uploaded and inserted into recipe table:", data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setUploading(false);
     }
   }
 

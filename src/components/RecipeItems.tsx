@@ -19,7 +19,7 @@ type RecipeProps = {
 
 const RecipeItems = ({ recipe }: { recipe: RecipeProps }) => {
   const { id, name, image, cuisine, diet } = recipe;
-  console.log("image ", image);
+
   return (
     <div className="bg-[#dce8ef]  flex flex-col overflow-hidden justify-between lg:w-80 h-[400px] p-3 gap-2 rounded-md">
       <div className="h-80 object-fill rounded-md overflow-hidden">
