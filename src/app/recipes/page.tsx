@@ -33,7 +33,7 @@ const Recipes = async ({ searchParams }: { searchParams: HomeProps }) => {
       </div>
       <div className="flex flex-wrap lg:gap-7 gap-10 justify-center lg:justify-normal">
         {recipes?.map((recipe) => (
-          <RecipeItems recipe={recipe} />
+          <RecipeItems key={recipe.id} recipe={recipe} />
         ))}
       </div>
     </main>
