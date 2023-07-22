@@ -1,13 +1,20 @@
 "use client";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FiFilter } from "react-icons/fi";
+import { MdOutlineClear } from "react-icons/md";
 import CustomFilter from "./CustomFilter";
 import { cuisines, diets } from "@/constants";
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false);
-  const [filtersSelected, setfiltersSelected] = useState(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const cuisineParam = searchParams.get("cuisines");
+  const dietParam = searchParams.get("diets");
+
   function closeModal() {
     setIsOpen(false);
   }
@@ -24,9 +31,21 @@ export default function MyModal() {
           onClick={openModal}
           className="flex items-center bg-accent bg-opacity-0 p-2 rounded-md hover:bg-opacity-20 gap-2 cursor-pointer"
         >
-          <span className="text-accent">filters</span>
+          <span className="text-accent font-medium">Filters</span>
           <FiFilter className="w-6 h-6 text-accent" />
         </button>
+        {!cuisineParam || !dietParam ? (
+          ""
+        ) : (
+          <button
+            type="button"
+            onClick={() => router.replace("/recipes")}
+            className="flex items-center bg-accent justify-between p-2 rounded-md hover:bg-opacity-75 transition cursor-pointer"
+          >
+            <span className="text-white font-medium">Clear filters</span>
+            <MdOutlineClear className="w-6 h-6 text-white" />
+          </button>
+        )}
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>

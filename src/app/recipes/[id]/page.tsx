@@ -18,8 +18,6 @@ const page = async ({ params }: { params: searchParamProps }) => {
     .select("*")
     .eq("id", params.id);
 
-  console.log(recipe?.length);
-
   if (error) {
     console.log(error);
     throw new Error("Recipe not found.");

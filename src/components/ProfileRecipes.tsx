@@ -20,7 +20,6 @@ const ProfileRecipes = ({
 }: {
   createdRecipes: createdRecipeProps;
 }) => {
-  console.log(createdRecipes);
   return (
     <div className="bg-secondary w-full rounded-xl py-4 px-2">
       {createdRecipes.image && (

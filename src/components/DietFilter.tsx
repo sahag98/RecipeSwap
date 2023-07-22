@@ -14,10 +14,6 @@ type CustomFilterProps = {
 };
 
 const DietFilter = ({ options, diet, setDiet }: CustomFilterProps) => {
-  const [selected, setSelected] = useState(options[0]);
-  const router = useRouter();
-
-  // console.log(selected)
   return (
     <div>
       <Listbox

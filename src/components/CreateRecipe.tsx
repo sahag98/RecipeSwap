@@ -37,7 +37,6 @@ const CreateRecipe = () => {
 
       const fileExt = file.name.split(".").pop();
 
-      console.log(fileExt);
       const fileName = `${Math.random()}.${fileExt}`;
       const filePath = `${fileName}`;
 
@@ -80,8 +79,7 @@ const CreateRecipe = () => {
       setServings(0);
       setInstructions("");
       setFile(null);
-
-      // console.log("Image uploaded and inserted into recipe table:", data);
+      router.refresh();
     } catch (error) {
       console.log(error);
     } finally {

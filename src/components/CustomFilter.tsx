@@ -16,12 +16,10 @@ const CustomFilter = ({ options, title }: CustomFilterProps) => {
   const router = useRouter();
 
   const handleUpdateParams = (e: string) => {
-    console.log(e);
-
     const newPathName = updateSearchParams(title, e);
     router.push(newPathName);
   };
-  // console.log(selected)
+
   return (
     <div>
       <Listbox
