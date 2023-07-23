@@ -22,7 +22,7 @@ export default function EditRecipe({
   image,
   userId,
 }: editRecipeProps) {
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
 
   const [newRecipeName, setNewRecipeName] = useState(name);
   const [newSummary, setNewSummary] = useState(summary);
