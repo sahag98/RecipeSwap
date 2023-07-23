@@ -2,17 +2,22 @@
 import React from "react";
 import { useSupabase } from "./supabase-provider";
 import Image from "next/image";
+import { BiTimer } from "react-icons/bi";
+import { PiCookingPotLight } from "react-icons/pi";
+import { FiEdit2 } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
+import EditRecipe from "./EditRecipe";
 
 type createdRecipeProps = {
   created_at: string | null;
   id: number;
-  image: string | null;
-  instructions: string | null;
-  name: string | null;
-  readyInMinutes: number | null;
-  servings: number | null;
-  summary: string | null;
-  user_id: string | null;
+  image: string;
+  instructions: string;
+  name: string;
+  readyInMinutes: number;
+  servings: number;
+  summary: string;
+  user_id: string;
 };
 
 const ProfileRecipes = ({
@@ -21,21 +26,47 @@ const ProfileRecipes = ({
   createdRecipes: createdRecipeProps;
 }) => {
   return (
-    <div className="bg-secondary w-full rounded-xl py-4 px-2">
+    <div className="bg-primary relative shadow-lg border flex h-32 gap-2 w-full overflow-hidden rounded-xl">
       {createdRecipes.image && (
         <Image
+          className="w-1/3 lg:w-1/4 border-r object-cover h-full"
           alt={createdRecipes.name + "image"}
           src={createdRecipes.image}
-          width={30}
-          height={30}
+          width={250}
+          height={250}
         />
       )}
-
-      <h2 className="text-white font-medium">{createdRecipes.name}</h2>
-      <ul className="text-white font-light">
-        <li>Ready in {createdRecipes.readyInMinutes} minutes</li>
-        <li>{createdRecipes.servings} servings</li>
-      </ul>
+      <section className="flex flex-col justify-between">
+        <h2 className="text-secondary capitalize mt-2 font-medium">
+          {createdRecipes.name}
+        </h2>
+        <div className="mb-2 flex items-center gap-1">
+          <BiTimer className="w-7 h-7 text-accent" />
+          <span className="text-xs font-medium">
+            {createdRecipes.readyInMinutes} mins
+          </span>
+          <section className="flex items-center ml-3 gap-1">
+            <PiCookingPotLight className="w-7 h-7 text-secondary" />
+            <span className="text-xs font-medium">
+              {createdRecipes.servings} servings
+            </span>
+          </section>
+        </div>
+      </section>
+      <div className="absolute flex gap-2 top-2 right-2">
+        <EditRecipe
+          name={createdRecipes.name}
+          mins={createdRecipes.readyInMinutes}
+          summary={createdRecipes.summary}
+          instructions={createdRecipes.instructions}
+          servings={createdRecipes.servings}
+          image={createdRecipes.image}
+          userId={createdRecipes.user_id}
+        />
+        <div className=" border-secondary cursor-pointer border p-1 rounded-md hover:bg-secondary hover:text-white transition">
+          <MdClose className="lg:w-5 lg:h-5" />
+        </div>
+      </div>
     </div>
   );
 };

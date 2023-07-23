@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { getRecipeInfo } from "@/utils";
 import Link from "next/link";
 
 type RecipeProps = {

@@ -34,7 +34,7 @@ const Profile = async () => {
         </div>
       </div>
       <h1 className="font-bold text-lg">{session?.user.user_metadata.name}</h1>
-      <h2 className="font-medium text-secondary">Recipes created</h2>
+      <h2 className="font-medium text-lg text-secondary">Recipes created</h2>
       {recipes?.map((recipe) => (
         <ProfileRecipes key={recipe.id} createdRecipes={recipe} />
       ))}

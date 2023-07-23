@@ -96,7 +96,7 @@ export interface Database {
           instructions: string
           name: string
           readyInMinutes: number
-          servings: number | null
+          servings: number
           summary: string
           user_id: string
         }
@@ -109,7 +109,7 @@ export interface Database {
           instructions: string
           name: string
           readyInMinutes: number
-          servings?: number | null
+          servings: number
           summary: string
           user_id: string
         }
@@ -122,7 +122,7 @@ export interface Database {
           instructions?: string
           name?: string
           readyInMinutes?: number
-          servings?: number | null
+          servings?: number
           summary?: string
           user_id?: string
         }
