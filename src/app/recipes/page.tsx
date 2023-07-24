@@ -45,8 +45,8 @@ const Recipes = async ({ searchParams }: { searchParams: HomeProps }) => {
   }
 
   return (
-    <main className="mx-auto relative">
-      <div className="flex relative justify-between items-center mt-3 mb-5">
+    <main className="mx-auto my-5 relative">
+      <div className="flex relative justify-between items-center mb-5">
         <h1 className="font-semibold text-lg text-secondary">
           List of Recipes
         </h1>

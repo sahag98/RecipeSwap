@@ -31,7 +31,7 @@ export default function MyModal() {
           onClick={openModal}
           className="flex items-center border text-accent border-accent p-2 rounded-md hover:bg-accent transition hover:text-white gap-2 cursor-pointer"
         >
-          <span className=" font-medium">Filters</span>
+          {/* <span className=" font-medium">Filters</span> */}
           <FiFilter className="w-6 h-6" />
         </button>
         {!cuisineParam || !dietParam ? (
@@ -40,7 +40,7 @@ export default function MyModal() {
           <button
             type="button"
             onClick={() => router.replace("/recipes")}
-            className="flex items-center bg-accent justify-between p-2 rounded-md hover:bg-opacity-75 transition cursor-pointer"
+            className="flex items-center bg-accent justify-between ml-3 p-2 rounded-md hover:bg-opacity-75 transition cursor-pointer"
           >
             <span className="text-white font-medium">Clear filters</span>
             <MdOutlineClear className="w-6 h-6 text-white" />

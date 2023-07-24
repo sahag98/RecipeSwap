@@ -20,7 +20,7 @@ const Profile = async () => {
     .eq("user_id", session?.user.id);
 
   return (
-    <div className="flex flex-col justify-center gap-5 items-center">
+    <div className="flex flex-col my-5 justify-center gap-5 items-center">
       <div className="relative">
         <Image
           alt="profile photo"
@@ -34,10 +34,18 @@ const Profile = async () => {
         </div>
       </div>
       <h1 className="font-bold text-lg">{session?.user.user_metadata.name}</h1>
-      <h2 className="font-medium text-lg text-secondary">Recipes created</h2>
-      {recipes?.map((recipe) => (
-        <ProfileRecipes key={recipe.id} createdRecipes={recipe} />
-      ))}
+      {recipes?.length === 0 ? (
+        <h2 className="font-medium">No recipes created yet!</h2>
+      ) : (
+        <>
+          <h2 className="font-medium text-lg text-secondary">
+            Recipes created
+          </h2>
+          {recipes?.map((recipe) => (
+            <ProfileRecipes key={recipe.id} createdRecipes={recipe} />
+          ))}
+        </>
+      )}
     </div>
   );
 };
