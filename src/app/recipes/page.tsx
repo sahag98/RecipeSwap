@@ -50,7 +50,6 @@ const Recipes = async ({ searchParams }: { searchParams: HomeProps }) => {
         <h1 className="font-semibold text-lg text-secondary">
           List of Recipes
         </h1>
-
         <Subscription />
         <MyModal />
       </div>

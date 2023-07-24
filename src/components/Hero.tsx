@@ -18,10 +18,12 @@ const Hero = () => {
         <h1 className="lg:text-6xl text-5xl font-bold bg-gradient-to-r from-sky-300 to-red-400 bg-clip-text text-transparent tracking-wider">
           RecipeSwap
         </h1>
-        <p className="mb-1 text-md text-center">
-          Share your recipes and search for the best ones.
+        <p className="text-lg text-center">
+          <span className="text-secondary">Share</span> your recipes and{" "}
+          <span className="text-secondary"> search </span>
+          for the best ones.
         </p>
-        <div className="flex rounded-lg overflow-hidden items-center">
+        {/* <div className="flex rounded-lg overflow-hidden items-center">
           <input
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
@@ -32,7 +34,7 @@ const Hero = () => {
           <div className="bg-accent hover:bg-accent/75 w-12 h-full items-center flex justify-center">
             <AiOutlineSearch className="cursor-pointer text-white w-8 h-8" />
           </div>
-        </div>
+        </div> */}
       </div>
     </main>
   );

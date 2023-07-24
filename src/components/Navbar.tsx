@@ -51,11 +51,11 @@ const Navbar = () => {
             </li>
           </Link>
         )}
-        <Link href="/favorites">
+        {/* <Link href="/favorites">
           <li className="hidden font-medium text-sm lg:text-base text-secondary">
-            Favorites
+            Favorites (Coming Soon!)
           </li>
-        </Link>
+        </Link> */}
       </ul>
       <div className="z-20 text-right">
         <Menu as="div" className="relative inline-block text-left">
@@ -135,7 +135,7 @@ const Navbar = () => {
                     )}
                   </Menu.Item>
                 </Link>
-                <Link href="/favorites">
+                {/* <Link href="/favorites">
                   <Menu.Item as="div" className="mb-2">
                     {({ active }) => (
                       <button
@@ -150,11 +150,11 @@ const Navbar = () => {
                         ) : (
                           <BiStar className="mr-4 h-6 w-6" />
                         )}
-                        Favorites
+                        Favorites (Coming Soon)
                       </button>
                     )}
                   </Menu.Item>
-                </Link>
+                </Link> */}
                 <Menu.Item>
                   {({ active }) => (
                     <button

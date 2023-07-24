@@ -29,10 +29,10 @@ export default function MyModal() {
         <button
           type="button"
           onClick={openModal}
-          className="flex items-center bg-accent bg-opacity-0 p-2 rounded-md hover:bg-opacity-20 gap-2 cursor-pointer"
+          className="flex items-center border text-accent border-accent p-2 rounded-md hover:bg-accent transition hover:text-white gap-2 cursor-pointer"
         >
-          <span className="text-accent font-medium">Filters</span>
-          <FiFilter className="w-6 h-6 text-accent" />
+          <span className=" font-medium">Filters</span>
+          <FiFilter className="w-6 h-6" />
         </button>
         {!cuisineParam || !dietParam ? (
           ""
@@ -88,7 +88,7 @@ export default function MyModal() {
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-[#dce8ef] px-4 py-2 text-sm font-medium text-accent hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent/90 px-4 py-2 text-sm font-medium transition hover:bg-accent text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Done
