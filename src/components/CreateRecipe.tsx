@@ -203,7 +203,7 @@ const CreateRecipe = () => {
           </>
         )}
       </label>
-      <button className="bg-accent p-3 text-white rounded-md">
+      <button className="bg-accent hover:bg-accent/90 transition p-3 text-white rounded-md">
         {uploading ? "Submitting" : "Submit"}
       </button>
     </form>

@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import { useSupabase } from "./supabase-provider";
 import Image from "next/image";
@@ -13,7 +13,9 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 const Navbar = () => {
   const { supabase, session } = useSupabase();
+  const [user, setUser] = useState(null);
   const router = useRouter();
+
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",

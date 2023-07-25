@@ -1,10 +1,8 @@
-"use client";
 import Image from "next/image";
-import React, { useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import Link from "next/link";
+import React from "react";
+
 const Hero = () => {
-  const [searchText, setSearchText] = useState("");
   return (
     <main className="flex w-full items-center h-full justify-center flex-col gap-3">
       <div className="mb-12 rounded-full flex flex-col justify-center items-center gap-2">
@@ -19,22 +17,18 @@ const Hero = () => {
           RecipeSwap
         </h1>
         <p className="text-lg text-center">
-          <span className="text-secondary">Share</span> your recipes and{" "}
-          <span className="text-secondary"> search </span>
+          <span className="text-secondary font-medium">Share</span> your recipes
+          and <span className="text-secondary font-medium"> search </span>
           for the best ones.
         </p>
-        {/* <div className="flex rounded-lg overflow-hidden items-center">
-          <input
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            className=" w-full lg:h-10 h-11 placeholder-secondary outline-none p-2 bg-[#f9e7e8]"
-            type="text"
-            placeholder="Search for a recipe"
-          />
-          <div className="bg-accent hover:bg-accent/75 w-12 h-full items-center flex justify-center">
-            <AiOutlineSearch className="cursor-pointer text-white w-8 h-8" />
-          </div>
-        </div> */}
+        <Link
+          className="w-full flex items-center justify-center"
+          href="/recipes"
+        >
+          <button className=" bg-accent shadow-lg mt-1 text-white w-2/3 py-2  rounded-md hover:bg-accent/90 transition">
+            Get Started
+          </button>
+        </Link>
       </div>
     </main>
   );

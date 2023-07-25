@@ -3,6 +3,7 @@ import { createServerClient } from "@/utils/supabase-server";
 import ProfileRecipes from "@/components/ProfileRecipes";
 import Image from "next/image";
 import { AiOutlinePlus } from "react-icons/ai";
+import Avatar from "@/components/Avatar";
 
 const Profile = async () => {
   const supabase = createServerClient();
@@ -21,21 +22,21 @@ const Profile = async () => {
 
   return (
     <div className="flex flex-col my-5 justify-center gap-5 items-center">
-      <div className="relative">
-        <Image
-          alt="profile photo"
-          src="/user-profile.svg"
-          width={100}
-          height={100}
-          className="rounded-full p-1 bg-accent/25"
-        />
-        <div className="bg-accent flex justify-center items-center rounded-full absolute bottom-0 right-0 w-8 h-8">
-          <AiOutlinePlus className="text-white w-5 h-5" />
-        </div>
-      </div>
+      <Avatar />
       <h1 className="font-bold text-lg">{session?.user.user_metadata.name}</h1>
+
       {recipes?.length === 0 ? (
-        <h2 className="font-medium">No recipes created yet!</h2>
+        <>
+          <h2 className="font-medium text-secondary">
+            No recipes created yet!
+          </h2>
+          <Image
+            src="/undraw_refreshing_beverage_td3r.svg"
+            alt="profile no recipe img"
+            width={120}
+            height={120}
+          />
+        </>
       ) : (
         <>
           <h2 className="font-medium text-lg text-secondary">
