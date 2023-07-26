@@ -17,15 +17,15 @@ const Hero = () => {
           RecipeSwap
         </h1>
         <p className="text-lg text-center">
-          <span className="text-secondary font-medium">Share</span> your recipes
-          and <span className="text-secondary font-medium"> search </span>
-          for the best ones.
+          <span className="text-secondary font-medium">Share </span>
+          and <span className="text-secondary font-medium"> Explore </span>
+          Delightful Recipes.
         </p>
         <Link
           className="w-full flex items-center justify-center"
           href="/recipes"
         >
-          <button className=" bg-accent shadow-lg mt-1 text-white w-2/3 py-2  rounded-md hover:bg-accent/90 transition">
+          <button className=" bg-accent shadow-lg mt-1 text-white w-3/4 py-3  rounded-md hover:bg-accent/90 transition">
             Get Started
           </button>
         </Link>

@@ -105,7 +105,7 @@ const Navbar = () => {
                           active
                             ? "bg-accent text-white font-medium"
                             : "bg-accent/25 text-accent"
-                        } group flex w-full items-center rounded-lg px-2 py-2 font-medium`}
+                        } group flex w-full transition items-center rounded-lg px-2 py-3 font-medium`}
                       >
                         {active ? (
                           <AiOutlinePlus className="mr-4 h-6 w-6" />
@@ -125,7 +125,7 @@ const Navbar = () => {
                           active
                             ? "bg-accent text-white text-base font-medium"
                             : "text-secondary"
-                        } group flex w-full items-center rounded-md  text-base px-2 py-2 font-medium`}
+                        } group flex w-full transition items-center rounded-md  text-base px-2 py-3 font-medium`}
                       >
                         {active ? (
                           <BsFillPersonFill className="mr-4 h-6 w-6" />
@@ -165,7 +165,7 @@ const Navbar = () => {
                         active
                           ? "bg-accent text-white font-medium"
                           : "text-secondary"
-                      } group flex w-full items-center rounded-md px-2 py-2 font-medium`}
+                      } group flex transition w-full items-center rounded-md px-2 py-3 font-medium`}
                     >
                       {active ? (
                         <RxExit className="mr-4 h-6 w-6" />

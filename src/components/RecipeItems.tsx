@@ -24,7 +24,7 @@ const RecipeItems = async ({ recipe }: { recipe: RecipeProps }) => {
     <div className="bg-[#dce8ef]  flex flex-col overflow-hidden justify-between lg:w-80 h-[400px] p-3 gap-2 rounded-md">
       <div className="h-80 object-fill rounded-md overflow-hidden">
         <Image
-          className="object-cover h-80 rounded-md transition hover:scale-105"
+          className="object-cover h-80 rounded-md transition"
           src={image ? image : ""}
           alt="food-image"
           width={500}

@@ -23,6 +23,11 @@ export default function MyModal() {
     setIsOpen(true);
   }
 
+  function clearFilters() {
+    setIsOpen(false);
+    router.replace("/recipes");
+  }
+
   return (
     <>
       <div className="absolute right-0 flex items-center justify-center">
@@ -31,21 +36,8 @@ export default function MyModal() {
           onClick={openModal}
           className="flex items-center border text-accent border-accent p-2 rounded-md hover:bg-accent transition hover:text-white gap-2 cursor-pointer"
         >
-          {/* <span className=" font-medium">Filters</span> */}
           <FiFilter className="w-6 h-6" />
         </button>
-        {!cuisineParam || !dietParam ? (
-          ""
-        ) : (
-          <button
-            type="button"
-            onClick={() => router.replace("/recipes")}
-            className="flex items-center bg-accent justify-between ml-3 p-2 rounded-md hover:bg-opacity-75 transition cursor-pointer"
-          >
-            <span className="text-white font-medium">Clear filters</span>
-            <MdOutlineClear className="w-6 h-6 text-white" />
-          </button>
-        )}
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -86,9 +78,21 @@ export default function MyModal() {
                   </div>
 
                   <div className="mt-4">
+                    {!cuisineParam || !dietParam ? (
+                      ""
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={clearFilters}
+                        className="flex items-center text-accent mb-2 border border-accent hover:bg-accent transition justify-between p-2 rounded-md hover:text-white cursor-pointer"
+                      >
+                        <span className="font-medium ">Clear filters</span>
+                        <MdOutlineClear className="w-6 h-6 " />
+                      </button>
+                    )}
                     <button
                       type="button"
-                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent/90 px-4 py-2 text-sm font-medium transition hover:bg-accent text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent px-4 py-2 text-sm font-medium transition hover:bg-accent/90 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Done

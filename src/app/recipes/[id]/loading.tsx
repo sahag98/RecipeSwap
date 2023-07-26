@@ -2,12 +2,15 @@ import ScrollTop from "@/components/ScrollTop";
 
 export default function Loading() {
   return (
-    <div className="lg:flex gap-10 mt-10">
+    <div>
       <ScrollTop />
       <section className="flex flex-col flex-2 gap-2">
-        <div className="lg:w-[450px] h-[300px] w-full animate-pulse bg-gray-200 rounded-lg" />
+        <div className="h-80 w-full animate-pulse bg-gray-200 rounded-lg" />
         <div>
-          <h1 className="font-bold bg-gray-200 mb-2 animate-pulse h-6 w-20 rounded-md" />
+          <div className="flex justify-between items-center">
+            <h1 className="font-bold bg-gray-200 mb-2 animate-pulse h-6 w-20 rounded-md" />
+            <h1 className="font-bold bg-gray-200 mb-2 animate-pulse h-6 w-20 rounded-md" />
+          </div>
           <h1 className="font-bold bg-gray-200 mb-2 animate-pulse h-6 w-24 rounded-md" />
         </div>
         <div>

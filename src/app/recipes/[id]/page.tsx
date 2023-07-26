@@ -5,12 +5,44 @@ import ScrollTop from "@/components/ScrollTop";
 import FavoriteButton from "@/components/FavoriteButton";
 import { createServerClient } from "@/utils/supabase-server";
 import { redirect } from "next/navigation";
+import { format } from "timeago.js";
+import { Metadata, ResolvingMetadata } from "next";
 export type searchParamProps = {
   id: any;
 };
 
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const supabase = createServerClient();
+  // read route params
+  const id = params.id;
+  // fetch data
+
+  const { data: recipe, error } = await supabase
+    .from("recipes")
+    .select("*")
+    .eq("id", id);
+
+  console.log("product", recipe);
+  // optionally access and extend (rather than replace) parent metadata
+
+  if (!recipe) {
+    throw new Error("No recipe found");
+  }
+
+  return {
+    title: recipe[0].name + " recipe",
+  };
+}
+
 const page = async ({ params }: { params: searchParamProps }) => {
-  console.log(params.id);
   const supabase = createServerClient();
 
   const { data: recipe, error } = await supabase
@@ -40,7 +72,7 @@ const page = async ({ params }: { params: searchParamProps }) => {
     <div>
       <ScrollTop />
       <section className="flex flex-col flex-2 gap-2 mb-2">
-        <div className="max-h-96 w-full flex justify-center items-center object-fill bg-secondary rounded-lg overflow-hidden">
+        <div className="max-h-96 w-full shadow-md flex justify-center items-center object-fill lg:bg-secondary rounded-lg overflow-hidden">
           <Image
             loading="lazy"
             className="lg:w-1/2 h-80 object-cover"
@@ -50,22 +82,27 @@ const page = async ({ params }: { params: searchParamProps }) => {
             height={450}
           />
         </div>
-        <div className="flex items-center justify-between">
-          <h1 className="lg:text-xl break-words capitalize text-lg font-bold w-2/3 tracking-wide">
+        <div className="flex justify-between">
+          <h1 className="lg:text-xl break-words mt-1 capitalize text-lg font-bold w-1/2 tracking-wide">
             {recipe[0]?.name}
           </h1>
 
-          <div className="flex items-center gap-2">
-            <h2 className="font-medium text-sm lg:text-base">
-              {profiles[0].full_name}
+          <div className="flex flex-col gap-1 ">
+            <div className="flex items-center gap-2">
+              <h2 className="font-semibold text-sm lg:text-base">
+                {profiles[0].full_name}
+              </h2>
+              <Image
+                className="rounded-full w-8 h-8 object-cover"
+                src={profiles[0].avatar_url!}
+                alt={profiles[0].avatar_url!}
+                width={40}
+                height={40}
+              />
+            </div>
+            <h2 className="text-sm lg:text-base">
+              {format(recipe[0].created_at!)}
             </h2>
-            <Image
-              className="rounded-full w-9 h-9 object-cover"
-              src={profiles[0].avatar_url!}
-              alt={profiles[0].avatar_url!}
-              width={45}
-              height={45}
-            />
           </div>
         </div>
         <h2 className="font-semibold lg:text-lg">Recipe Information:</h2>
@@ -81,11 +118,11 @@ const page = async ({ params }: { params: searchParamProps }) => {
       </section>
       <section className="flex-1 flex flex-col gap-3">
         <div>
-          <h1 className="font-bold lg:text-start text-center">Instructions:</h1>
+          <h1 className="font-bold">Instructions:</h1>
           <p className="leading-7 text-justify">{recipe[0]?.instructions}</p>
         </div>
         <div>
-          <h1 className="font-bold lg:text-start text-center">Summary:</h1>
+          <h1 className="font-bold ">Summary:</h1>
           <p className="leading-7 text-justify">{recipe[0]?.summary}</p>
         </div>
       </section>
