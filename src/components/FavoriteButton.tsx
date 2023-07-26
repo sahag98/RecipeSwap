@@ -30,7 +30,7 @@ const FavoriteButton = () => {
     <button
       // onClick={() => addToFavorites(recipesInfo.title)}
       disabled={true}
-      className=" flex items-center justify-center rounded text-white bg-accent w-full py-3"
+      className=" flex items-center justify-center rounded text-white bg-accent w-full py-2"
     >
       <AiOutlineHeart size={28} color="white" />
       Add to Favorites (Coming Soon)

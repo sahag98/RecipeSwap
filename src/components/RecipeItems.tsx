@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { createServerClient } from "@/utils/supabase-server";
 
 type RecipeProps = {
   created_at: string | null;
@@ -16,7 +17,7 @@ type RecipeProps = {
   diet: string | null;
 };
 
-const RecipeItems = ({ recipe }: { recipe: RecipeProps }) => {
+const RecipeItems = async ({ recipe }: { recipe: RecipeProps }) => {
   const { id, name, image, cuisine, diet } = recipe;
 
   return (
@@ -38,11 +39,11 @@ const RecipeItems = ({ recipe }: { recipe: RecipeProps }) => {
           <p className="text-xs text-white">{diet}</p>
         </div>
       </div>
-
-      <h2 className="font-semibold text-md capitalize">{name}</h2>
-
+      <div className="flex justify-between">
+        <h2 className="font-semibold text-md capitalize">{name}</h2>
+      </div>
       <Link href={`/recipes/${id}`}>
-        <button className="bg-accent text-white rounded-md w-full p-3 hover:bg-[#5ba1ca]">
+        <button className="bg-accent text-white transition rounded-md w-full p-3 hover:bg-[#5ba1ca]">
           View Recipe
         </button>
       </Link>

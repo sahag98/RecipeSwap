@@ -37,8 +37,8 @@ const ProfileRecipes = ({
           height={250}
         />
       )}
-      <section className="flex flex-col  w-1/2 justify-between">
-        <h2 className="text-secondary w-1/2 capitalize mt-2 font-medium">
+      <section className="flex flex-col w-2/3 justify-between">
+        <h2 className="text-secondary w-2/3 text-sm lg:text-base capitalize mt-2 font-medium">
           {createdRecipes.name}
         </h2>
         <div className="mb-2 flex items-center gap-1">

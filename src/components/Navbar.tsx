@@ -42,13 +42,13 @@ const Navbar = () => {
       </Link>
       <ul className="flex items-center gap-5">
         <Link href="/recipes">
-          <li className="font-medium text-md lg:text-base text-secondary">
+          <li className="font-medium hover:text-secondary/80 transition text-md lg:text-base text-secondary">
             Recipes
           </li>
         </Link>
         {session?.user && (
           <Link className="hidden lg:flex" href="/create">
-            <li className="font-medium text-sm lg:text-base text-secondary">
+            <li className="font-medium hover:text-secondary/80 text-sm lg:text-base text-secondary">
               Create A Recipe
             </li>
           </Link>
