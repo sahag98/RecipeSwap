@@ -46,7 +46,7 @@ const Navbar = () => {
             Recipes
           </li>
         </Link>
-        {session && (
+        {session?.user && (
           <Link className="hidden lg:flex" href="/create">
             <li className="font-medium text-sm lg:text-base text-secondary">
               Create A Recipe

@@ -53,11 +53,6 @@ export default function EditRecipe({
         throw new Error("You need to be signed in.");
       }
 
-      // let { data: recipes, error } = await supabase
-      //   .from("recipes")
-      //   .select("*")
-      //   .eq("id", id);
-
       const { data, error } = await supabase
         .from("recipes")
         .update({
@@ -71,7 +66,6 @@ export default function EditRecipe({
       if (error) {
         throw error;
       }
-
       router.refresh();
     } catch (error) {
       console.log(error);
@@ -121,13 +115,13 @@ export default function EditRecipe({
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-secondary"
+                    className="text-lg font-medium text-center leading-6 text-secondary"
                   >
                     Edit Recipe
                   </Dialog.Title>
                   <form
                     onSubmit={editRecipe}
-                    className="w-full flex flex-col gap-2 bg-gray-200 rounded-md p-2"
+                    className="w-full flex flex-col mt-2 gap-2 bg-gray-200 rounded-md p-2"
                   >
                     <div className="flex flex-col gap-1">
                       <label
@@ -209,7 +203,8 @@ export default function EditRecipe({
                     </div>
                     <button
                       type="submit"
-                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      disabled={editing}
+                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent px-4 py-2 text-sm font-medium text-white  focus:outline-none hover:bg-accent/90 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     >
                       {editing ? "Confirming" : "Confirm"}
                     </button>

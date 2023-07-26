@@ -1,17 +1,29 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSupabase } from "./supabase-provider";
 import Image from "next/image";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineCloudUpload, AiOutlinePlus } from "react-icons/ai";
+import { Dialog, Transition } from "@headlessui/react";
+import { BsFillPersonFill } from "react-icons/bs";
 
 const Avatar = () => {
   const [file, setFile] = useState<any>(null);
   const { supabase, session } = useSupabase();
   const [user, setUser] = useState<any>(null);
+  let [isOpen, setIsOpen] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
-  async function handleUpload(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  async function handleUpload() {
     try {
+      setUploading(true);
       if (!file) {
         throw new Error("You must select an image to upload.");
       }
@@ -54,6 +66,9 @@ const Avatar = () => {
       setFile(null);
     } catch (error) {
       console.log(error);
+    } finally {
+      closeModal();
+      setUploading(false);
     }
   }
 
@@ -116,26 +131,93 @@ const Avatar = () => {
           className="rounded-full object-cover p-1 bg-accent/25"
         />
       )}
-      <form onSubmit={handleUpload} className="flex items-center">
-        <div className="bg-accent cursor-pointer flex justify-center items-center rounded-full absolute bottom-0 right-0 w-8 h-8">
-          <label className="cursor-pointer">
-            <AiOutlinePlus className="text-white w-5 h-5" />
-            <input
-              type="file"
-              name="upload-image"
-              className="bg-accent flex justify-center items-center rounded-full  w-0 h-0"
-              accept=".png,.jpeg,.jpg"
-              onChange={handleFileChange}
-            />
-          </label>
-        </div>
-        {file && (
-          <button className="bg-accent text-white px-3 mt-1 py-1 rounded-md">
-            Submit
-          </button>
-        )}
-        {/* <button>Submit</button> */}
-      </form>
+
+      <div className="bg-accent text-white hover:bg-primary hover:border hover:border-accent hover:text-accent transition cursor-pointer flex justify-center items-center rounded-full absolute bottom-0 right-0 w-8 h-8">
+        <AiOutlinePlus onClick={openModal} className=" w-5 h-5" />
+      </div>
+      <>
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={closeModal}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg flex items-center justify-center text-center font-medium leading-6 text-secondary"
+                    >
+                      Change Avatar
+                      <BsFillPersonFill className="ml-2" size={30} />
+                    </Dialog.Title>
+
+                    <label>
+                      {!file && (
+                        <div className="h-60 mt-2 cursor-pointer bg-accent/20 p-8 flex rounded-lg flex-col justify-center items-center">
+                          <p className="font-bold text-4xl">
+                            <AiOutlineCloudUpload />
+                          </p>
+                          <p>Click to upload</p>
+                          <input
+                            type="file"
+                            name="upload-image"
+                            className="w-0 h-0"
+                            accept=".png,.jpeg,.jpg"
+                            onChange={handleFileChange}
+                          />
+                        </div>
+                      )}
+                      {file && (
+                        <>
+                          <div className="h-96 mt-2 cursor-pointer relative bg-[#d5d8d8]flex flex-col justify-center items-center">
+                            <Image
+                              className="w-full h-full rounded-lg object-cover"
+                              src={URL.createObjectURL(file)}
+                              alt="image-preview"
+                              width={500}
+                              height={500}
+                            />
+                          </div>
+                        </>
+                      )}
+                    </label>
+
+                    <div className="mt-4">
+                      <button
+                        type="button"
+                        disabled={uploading}
+                        className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent transition px-4 py-2 text-sm font-medium text-white hover:bg-accent/90 focus:outline-none "
+                        onClick={handleUpload}
+                      >
+                        {uploading ? "Uploading..." : "Change"}
+                      </button>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
+      </>
     </div>
   );
 };
