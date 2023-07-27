@@ -114,7 +114,7 @@ const page = async ({ params }: { params: searchParamProps }) => {
           <h1 className="font-bold text-secondary">Servings:</h1>
           <p className="font-medium">{recipe[0]?.servings}</p>
         </div>
-        {/* <FavoriteButton /> */}
+        <FavoriteButton recipesInfo={recipe[0]} />
       </section>
       <section className="flex-1 flex flex-col gap-3">
         <div>

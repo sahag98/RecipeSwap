@@ -53,7 +53,7 @@ export interface Database {
         Row: {
           avatar_url: string | null
           favorites: string[] | null
-          full_name: string | null
+          full_name: string
           id: string
           updated_at: string | null
           username: string | null
@@ -62,7 +62,7 @@ export interface Database {
         Insert: {
           avatar_url?: string | null
           favorites?: string[] | null
-          full_name?: string | null
+          full_name: string
           id: string
           updated_at?: string | null
           username?: string | null
@@ -71,7 +71,7 @@ export interface Database {
         Update: {
           avatar_url?: string | null
           favorites?: string[] | null
-          full_name?: string | null
+          full_name?: string
           id?: string
           updated_at?: string | null
           username?: string | null
