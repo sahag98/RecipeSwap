@@ -30,9 +30,6 @@ export async function generateMetadata(
     .select("*")
     .eq("id", id);
 
-  console.log("product", recipe);
-  // optionally access and extend (rather than replace) parent metadata
-
   if (!recipe) {
     throw new Error("No recipe found");
   }
@@ -44,6 +41,9 @@ export async function generateMetadata(
 
 const page = async ({ params }: { params: searchParamProps }) => {
   const supabase = createServerClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   const { data: recipe, error } = await supabase
     .from("recipes")
@@ -67,6 +67,11 @@ const page = async ({ params }: { params: searchParamProps }) => {
   if (!profiles) {
     throw new Error("Something went wrong.");
   }
+
+  const { data: favorites } = await supabase
+    .from("profiles")
+    .select("favorites")
+    .eq("id", session?.user.id);
 
   return (
     <div>
@@ -114,7 +119,7 @@ const page = async ({ params }: { params: searchParamProps }) => {
           <h1 className="font-bold text-secondary">Servings:</h1>
           <p className="font-medium">{recipe[0]?.servings}</p>
         </div>
-        <FavoriteButton recipesInfo={recipe[0]} />
+        <FavoriteButton favorites={favorites} recipesInfo={recipe[0]} />
       </section>
       <section className="flex-1 flex flex-col gap-3">
         <div>

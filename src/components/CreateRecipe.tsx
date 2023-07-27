@@ -56,8 +56,6 @@ const CreateRecipe = () => {
         throw getUrlError;
       }
 
-      console.log("public url", imageData.signedUrl);
-
       const { data, error } = await supabase.from("recipes").insert({
         name: recipeName,
         instructions: instructions,

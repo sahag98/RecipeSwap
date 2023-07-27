@@ -16,7 +16,6 @@ const Subscription = () => {
         },
         (payload) => {
           const newRecord = payload.new;
-          console.log("payload ", payload);
         }
       )
       .subscribe();

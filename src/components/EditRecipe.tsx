@@ -45,7 +45,7 @@ export default function EditRecipe({
 
   async function editRecipe(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(id);
+
     try {
       setEditing(true);
 

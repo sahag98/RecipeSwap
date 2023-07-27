@@ -5,14 +5,15 @@ import Image from "next/image";
 import { AiOutlineCloudUpload, AiOutlinePlus } from "react-icons/ai";
 import { Dialog, Transition } from "@headlessui/react";
 import { BsFillPersonFill } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
-const Avatar = () => {
+const Avatar = ({ avatar }: any) => {
   const [file, setFile] = useState<any>(null);
   const { supabase, session } = useSupabase();
   const [user, setUser] = useState<any>(null);
   let [isOpen, setIsOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
-
+  const router = useRouter();
   function closeModal() {
     setIsOpen(false);
   }
@@ -64,6 +65,7 @@ const Avatar = () => {
         throw error;
       }
       setFile(null);
+      router.refresh();
     } catch (error) {
       console.log(error);
     } finally {
@@ -76,48 +78,12 @@ const Avatar = () => {
     setFile(event.target.files[0]);
   }
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      let { data: profiles, error } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", session?.user.id);
-      if (!profiles) {
-        throw new Error("Profile not found");
-      }
-      setUser(profiles[0]);
-    };
-    fetchUsers();
-  }, []);
-
-  useEffect(() => {
-    const profiles = supabase
-      .channel("custom-filter-channel")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "profiles",
-          filter: `id=eq.${session?.user.id}`,
-        },
-        (payload) => {
-          setUser(payload.new);
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(profiles);
-    };
-  }, []);
-
   return (
     <div className="relative">
-      {user ? (
+      {avatar ? (
         <Image
           alt="profile photo"
-          src={user.avatar_url}
+          src={avatar[0].avatar_url}
           width={100}
           height={100}
           className="rounded-full w-32 h-32 object-cover"
