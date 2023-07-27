@@ -21,9 +21,8 @@ export async function generateMetadata(
   parent?: ResolvingMetadata
 ): Promise<Metadata> {
   const supabase = createServerClient();
-  // read route params
+
   const id = params.id;
-  // fetch data
 
   const { data: recipe, error } = await supabase
     .from("recipes")
@@ -119,7 +118,9 @@ const page = async ({ params }: { params: searchParamProps }) => {
           <h1 className="font-bold text-secondary">Servings:</h1>
           <p className="font-medium">{recipe[0]?.servings}</p>
         </div>
-        <FavoriteButton favorites={favorites} recipesInfo={recipe[0]} />
+        {session && (
+          <FavoriteButton favorites={favorites} recipesInfo={recipe[0]} />
+        )}
       </section>
       <section className="flex-1 flex flex-col gap-3">
         <div>
