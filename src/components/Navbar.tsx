@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Menu, Transition } from "@headlessui/react";
 import { BsChevronDown, BsFillPersonFill } from "react-icons/bs";
 import { RxExit } from "react-icons/rx";
+import { FcGoogle } from "react-icons/fc";
 
 import { AiOutlinePlus } from "react-icons/ai";
 
@@ -81,9 +82,14 @@ const Navbar = ({ avatar }: any) => {
             ) : (
               <button
                 onClick={handleGoogleLogin}
-                className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-20 px-4 py-3 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+                className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
-                <h2 className="text-accent font-semibold">Google Sign In</h2>
+                <h2 className="text-accent font-semibold flex items-center gap-2">
+                  <span>
+                    <FcGoogle className="w-7 h-7" />
+                  </span>
+                  Sign In
+                </h2>
               </button>
             )}
           </div>
