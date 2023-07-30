@@ -59,7 +59,7 @@ const Recipes = async ({ searchParams }: { searchParams: HomeProps }) => {
           different filter.
         </p>
       )}
-      <div className="flex flex-wrap lg:gap-7 gap-10 justify-center lg:justify-normal">
+      <div className="flex flex-wrap lg:gap-7 gap-10 justify-center lg:justify-between">
         {recipeData?.map((recipe: RecipeProps) => (
           <RecipeItems key={recipe.id} recipe={recipe} />
         ))}

@@ -22,28 +22,6 @@ const FavoriteButton = ({ recipesInfo, favorites }: any) => {
   );
   const router = useRouter();
 
-  console.log("current :", currentFavorites);
-
-  // useEffect(() => {
-  //   const fetchFavorites = async () => {
-  //     let { data: favorites, error } = await supabase
-  //       .from("profiles")
-  //       .select("favorites")
-  //       .eq("id", session?.user.id);
-  //     if (!favorites) {
-  //       return;
-  //     }
-  //     favorites[0].favorites!.map((f: any) => {
-  //       if (f === recipesInfo.name) {
-  //         setAlreadyFavorited(true);
-  //       }
-  //     });
-  //   };
-  //   if (session?.user) {
-  //     fetchFavorites();
-  //   }
-  // }, []);
-
   useEffect(() => {
     const profiles = supabase
       .channel("custom-filter-channel")
@@ -96,13 +74,13 @@ const FavoriteButton = ({ recipesInfo, favorites }: any) => {
           onClick={() => addToFavorites(recipesInfo.name)}
           disabled={isFavoriting}
           className={
-            currentFavorites.includes(recipesInfo.name) || alreadyFavorited
-              ? "flex items-center font-semibold cursor-auto justify-center rounded text-white  bg-accent/75 w-full py-2"
-              : "flex items-center font-semibold gap-1 justify-center rounded hover:bg-accent/90 transition text-white bg-accent w-full py-2"
+            currentFavorites?.includes(recipesInfo.name) || alreadyFavorited
+              ? "flex items-center font-semibold cursor-auto justify-center rounded text-white  bg-accent/75 w-full lg:w-1/6 py-2"
+              : "flex items-center font-semibold gap-1 lg:w-1/12 justify-center rounded hover:bg-accent/90 transition text-white bg-accent w-full py-2"
           }
         >
           <AiOutlineHeart size={28} color="white" />
-          {currentFavorites.includes(recipesInfo.name) || alreadyFavorited
+          {currentFavorites?.includes(recipesInfo.name) || alreadyFavorited
             ? "Already favorited"
             : "Favorite"}
         </button>

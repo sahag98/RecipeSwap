@@ -95,7 +95,7 @@ const CreateRecipe = () => {
       className="flex flex-col bg-gray-200 p-3 gap-3 rounded-md"
     >
       <div className="flex flex-col gap-1">
-        <label htmlFor="recipeName" className="font-medium text-secondary">
+        <label htmlFor="recipeName" className="font-medium text-sm">
           Enter recipe name
         </label>
         <input
@@ -108,7 +108,7 @@ const CreateRecipe = () => {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <label htmlFor="recipeName" className="font-medium text-secondary">
+        <label htmlFor="recipeName" className="font-medium text-sm ">
           Enter summary
         </label>
         <textarea
@@ -120,7 +120,7 @@ const CreateRecipe = () => {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <label htmlFor="instructions" className="font-medium text-secondary">
+        <label htmlFor="instructions" className="font-medium text-sm ">
           Enter Instructions
         </label>
         <textarea
@@ -132,7 +132,7 @@ const CreateRecipe = () => {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <label htmlFor="servings" className="font-medium text-secondary">
+        <label htmlFor="servings" className="font-medium text-sm ">
           Enter number of servings
         </label>
         <input
@@ -145,7 +145,7 @@ const CreateRecipe = () => {
         />
       </div>
       <div className="flex flex-col gap-1">
-        <label htmlFor="time" className="font-medium text-secondary">
+        <label htmlFor="time" className="font-medium text-sm">
           Enter ready in time
         </label>
         <input

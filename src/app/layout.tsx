@@ -30,6 +30,11 @@ export default async function RootLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
+  const { data: avatar } = await supabase
+    .from("profiles")
+    .select("avatar_url")
+    .eq("id", session?.user.id);
+
   return (
     <html lang="en">
       {/*
@@ -43,7 +48,7 @@ export default async function RootLayout({
 
           <NextTopLoader color="#E0777D" showSpinner={false} />
           <div className="lg:px-64 relative">
-            <Navbar />
+            <Navbar avatar={avatar} />
           </div>
           <div className="lg:px-64 relative px-4">{children}</div>
         </SupabaseProvider>

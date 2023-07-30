@@ -12,6 +12,9 @@ module.exports = {
         'primary': 'white',
         'secondary': '#E0777D',
         'accent': '#4C86A8'
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       }
     },
   },

@@ -86,6 +86,8 @@ const Avatar = ({ avatar }: any) => {
           src={avatar[0].avatar_url}
           width={100}
           height={100}
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN8UQ8AAlUBaWcVN3EAAAAASUVORK5CYII="
           className="rounded-full w-32 h-32 object-cover"
         />
       ) : (

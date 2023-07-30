@@ -1,21 +1,17 @@
 "use client";
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Link from "next/link";
 import { useSupabase } from "./supabase-provider";
 import Image from "next/image";
-import { User } from "@supabase/supabase-js";
+
 import { Menu, Transition } from "@headlessui/react";
 import { BsChevronDown, BsFillPersonFill } from "react-icons/bs";
 import { RxExit } from "react-icons/rx";
-import { BiFoodMenu, BiStar } from "react-icons/bi";
-import { useRouter } from "next/navigation";
+
 import { AiOutlinePlus } from "react-icons/ai";
 
-const Navbar = () => {
+const Navbar = ({ avatar }: any) => {
   const { supabase, session } = useSupabase();
-  const [user, setUser] = useState(null);
-  const router = useRouter();
-
   const handleGoogleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -23,6 +19,12 @@ const Navbar = () => {
     if (error) {
       console.log({ error });
     }
+  };
+
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    setIsClicked((prevIsClicked) => !prevIsClicked);
   };
 
   const handleLogout = async () => {
@@ -63,13 +65,13 @@ const Navbar = () => {
         <Menu as="div" className="relative inline-block text-left">
           <div>
             {session ? (
-              <Menu.Button className="inline-flex w-full items-center justify-center rounded-md  px-4 py-2 text-sm font-medium text-white hover:bg-accent/25 focus:outline-none ">
+              <Menu.Button className="inline-flex w-full items-center justify-center rounded-md  px-4 py-2 text-sm font-medium text-white transition hover:bg-accent/20 focus:outline-none ">
                 <Image
-                  src="/user-profile.svg"
-                  width={35}
-                  height={35}
+                  src={avatar[0].avatar_url}
+                  width={30}
+                  height={30}
                   alt="profile photo"
-                  className="rounded-full p-1 bg-accent/50"
+                  className="rounded-full border w-9 h-9 object-cover"
                 />
                 <BsChevronDown
                   className="ml-2 -mr-1 text-accent h-5 w-5"
@@ -81,7 +83,7 @@ const Navbar = () => {
                 onClick={handleGoogleLogin}
                 className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-20 px-4 py-3 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
               >
-                <h2 className="text-accent font-semibold">Sign In</h2>
+                <h2 className="text-accent font-semibold">Google Sign In</h2>
               </button>
             )}
           </div>

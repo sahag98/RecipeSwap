@@ -49,6 +49,40 @@ export interface Database {
         }
         Relationships: []
       }
+      likes: {
+        Row: {
+          created_at: string | null
+          id: number
+          recipe_id: number | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          recipe_id?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          recipe_id?: number | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "likes_recipe_id_fkey"
+            columns: ["recipe_id"]
+            referencedRelation: "recipes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "likes_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -96,6 +130,7 @@ export interface Database {
           instructions: string
           name: string
           readyInMinutes: number
+          reviews: Json[] | null
           servings: number
           summary: string
           user_id: string
@@ -109,6 +144,7 @@ export interface Database {
           instructions: string
           name: string
           readyInMinutes: number
+          reviews?: Json[] | null
           servings: number
           summary: string
           user_id: string
@@ -122,6 +158,7 @@ export interface Database {
           instructions?: string
           name?: string
           readyInMinutes?: number
+          reviews?: Json[] | null
           servings?: number
           summary?: string
           user_id?: string
@@ -140,6 +177,13 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
+      add_review: {
+        Args: {
+          recipe_id: number
+          review: Json
+        }
+        Returns: undefined
+      }
       append_array:
         | {
             Args: {
@@ -154,10 +198,39 @@ export interface Database {
             }
             Returns: undefined
           }
-      remove_array: {
+        | {
+            Args: {
+              new_element: string
+              id: number
+            }
+            Returns: undefined
+          }
+      append_reviews: {
         Args: {
           new_element: string
-          id: string
+          id: number
+        }
+        Returns: undefined
+      }
+      remove_array:
+        | {
+            Args: {
+              new_element: string
+              id: string
+            }
+            Returns: undefined
+          }
+        | {
+            Args: {
+              new_element: string
+              id: number
+            }
+            Returns: undefined
+          }
+      remove_reviews: {
+        Args: {
+          new_element: string
+          id: number
         }
         Returns: undefined
       }
