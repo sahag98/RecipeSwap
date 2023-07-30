@@ -121,12 +121,14 @@ const page = async ({ params }: { params: searchParamProps }) => {
                 height={40}
               />
             </div>
-            <h2 className="text-sm">{format(recipe[0].created_at!)}</h2>
+            <h2 className="text-sm text-gray-500">
+              {format(recipe[0].created_at!)}
+            </h2>
           </div>
         </section>
-        <h2 className="font-semibold lg:text-lg text-gray-600">
-          Recipe Information:
-        </h2>
+        {/* <h2 className="font-semibold lg:text-lg text-gray-700">
+          Recipe Information
+        </h2> */}
         <div className="flex items-center gap-1">
           <h1 className="font-bold text-secondary">Ready In:</h1>
           <p className="font-medium">{recipe[0]?.readyInMinutes} mins</p>
@@ -141,11 +143,11 @@ const page = async ({ params }: { params: searchParamProps }) => {
       </section>
       <section className="flex-1 flex flex-col gap-3">
         <div>
-          <h2 className="font-bold text-gray-600">Instructions:</h2>
+          <h2 className="font-bold text-gray-700">Instructions</h2>
           <p className="leading-7 text-justify">{recipe[0]?.instructions}</p>
         </div>
         <div>
-          <h2 className="font-bold text-gray-600">Summary:</h2>
+          <h2 className="font-bold text-gray-700">Summary</h2>
           <p className="leading-7 text-justify">{recipe[0]?.summary}</p>
         </div>
         <div>

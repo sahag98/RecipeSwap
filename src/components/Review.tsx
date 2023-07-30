@@ -31,19 +31,19 @@ const Review = ({ RecipeId }: any) => {
   }
   return (
     <div>
-      <h2 className="font-bold text-gray-600">Reviews</h2>
+      <h2 className="font-bold text-gray-700 mb-1">Reviews</h2>
       <form
         onSubmit={addReview}
         className="flex items-center justify-between gap-3"
       >
         <input
-          className="bg-gray-200 outline-none rounded-md w-full p-2"
+          className="bg-gray-200 outline-none text-sm rounded-md w-full p-2"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           type="text"
           placeholder="Write a review..."
         />
-        <button className="bg-accent rounded-full p-3 text-white">
+        <button className="bg-accent hover:bg-accent/90 transition rounded-full p-3 text-white">
           <AiOutlineSend />
         </button>
       </form>

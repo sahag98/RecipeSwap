@@ -20,9 +20,13 @@ type likeProps = {
 const Likes = ({ recipeId, userId, likes, isLikedByMe }: likeProps) => {
   const { supabase, session } = useSupabase();
   const router = useRouter();
-  console.log(likes);
 
   async function toggleLike() {
+    if (!session) {
+      alert("You need to sign in to like a recipe");
+      return;
+    }
+
     if (isLikedByMe) {
       const { data, error } = await supabase
         .from("likes")
@@ -50,7 +54,10 @@ const Likes = ({ recipeId, userId, likes, isLikedByMe }: likeProps) => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className={"w-6 h-6 " + (isLikedByMe ? "fill-red-500" : "")}
+        className={
+          "w-6 h-6 hover:fill-red-400 transition " +
+          (isLikedByMe ? "fill-red-500" : "")
+        }
       >
         <path
           strokeLinecap="round"
