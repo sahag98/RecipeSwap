@@ -4,13 +4,13 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <main className="flex w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-secondary/20 to-white items-center h-full justify-center flex-col gap-3">
+    <main className="flex w-full items-center h-full justify-center flex-col gap-3">
       <div className="mb-12 rounded-full flex flex-col justify-center items-center gap-2">
         <Image
           src="/undraw_cooking_p7m1.svg"
           alt="hero img"
-          width={250}
-          height={250}
+          width={230}
+          height={230}
           className="mb-2"
         />
         <h1 className="lg:text-6xl text-5xl font-bold bg-gradient-to-r from-sky-300 to-red-400 bg-clip-text text-transparent tracking-wider">
@@ -25,7 +25,7 @@ const Hero = () => {
           className="w-full flex items-center justify-center"
           href="/recipes"
         >
-          <button className=" bg-accent shadow-lg mt-1 text-white w-3/4 py-3  rounded-md hover:bg-accent/90 transition">
+          <button className=" bg-accent shadow-lg mt-1 font-medium text-white w-3/4 py-3  rounded-md hover:bg-accent/90 transition">
             Get Started
           </button>
         </Link>
