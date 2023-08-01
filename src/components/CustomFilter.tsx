@@ -31,9 +31,9 @@ const CustomFilter = ({ options, title }: CustomFilterProps) => {
       >
         <div className="rounded-md z-10">
           {/* Button for the listbox */}
-          <Listbox.Button className="flex lg:w-44 w-40 items-center justify-between p-2 rounded-md border border-secondary">
+          <Listbox.Button className="flex lg:w-44 w-40 items-center justify-between p-2 rounded-md border border-accent">
             <span className="block truncate font-medium mr-2">{selected}</span>
-            <BsChevronDown className="text-secondary" />
+            <BsChevronDown className="text-accent" />
           </Listbox.Button>
           {/* Transition for displaying the options */}
           <Transition
@@ -42,7 +42,7 @@ const CustomFilter = ({ options, title }: CustomFilterProps) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className=" lg:w-44 w-40 h-44 overflow-y-auto border rounded-md border-secondary">
+            <Listbox.Options className=" lg:w-44 w-40 h-44 overflow-y-auto border rounded-md border-accent">
               {/* Map over the options and display them as listbox options */}
               {options.map((option) => (
                 <Listbox.Option
@@ -50,7 +50,7 @@ const CustomFilter = ({ options, title }: CustomFilterProps) => {
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 px-4 ${
                       active
-                        ? "bg-secondary text-white cursor-pointer"
+                        ? "bg-accent text-white cursor-pointer"
                         : "text-gray-900"
                     }`
                   }

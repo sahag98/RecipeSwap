@@ -4,7 +4,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <main className="flex w-full items-center h-full justify-center flex-col gap-3">
+    <main className="flex w-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-secondary/20 to-white items-center h-full justify-center flex-col gap-3">
       <div className="mb-12 rounded-full flex flex-col justify-center items-center gap-2">
         <Image
           src="/undraw_cooking_p7m1.svg"

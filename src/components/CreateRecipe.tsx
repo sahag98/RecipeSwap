@@ -1,14 +1,58 @@
 "use client";
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import { useSupabase } from "./supabase-provider";
+
 import { useRouter } from "next/navigation";
-import CustomFilter from "./CustomFilter";
-import { cuisines, diets } from "@/constants";
-import { BiImage } from "react-icons/bi";
-import { AiFillCloseCircle, AiOutlineCloudUpload } from "react-icons/ai";
 import Image from "next/image";
+
+import { cuisines, diets } from "@/constants";
+import { AiOutlineCloudUpload } from "react-icons/ai";
+
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 import RecipeFilters from "./RecipeFilters";
 import DietFilter from "./DietFilter";
+
+const QuillNoSSRWrapper = dynamic(() => import("react-quill"), { ssr: false });
+// const QuillNoSSRWrapper = dynamic(import("react-quill"), {
+//   ssr: false,
+//   loading: () => <p>Loading ...</p>,
+// });
+
+const modules = {
+  toolbar: [
+    ["bold", "italic", "underline"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["clean"],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+};
+/*
+ * Quill editor formats
+ * See https://quilljs.com/docs/formats/
+ */
+const formats = [
+  "header",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+];
 
 const CreateRecipe = () => {
   const { supabase, session } = useSupabase();
@@ -92,15 +136,16 @@ const CreateRecipe = () => {
   return (
     <form
       onSubmit={handleUpload}
-      className="flex flex-col bg-gray-200 p-3 gap-3 rounded-md"
+      className="flex flex-col bg-gray-200 my-3 p-3 gap-3 rounded-md"
     >
       <div className="flex flex-col gap-1">
         <label htmlFor="recipeName" className="font-medium text-sm">
-          Enter recipe name
+          Recipe Name
         </label>
         <input
           name="recipeName"
-          className="rounded-md text-sm p-2 outline-none"
+          required
+          className="rounded-md text-sm px-2 py-3 outline-none"
           type="text"
           placeholder="Chicken Shawerma"
           value={recipeName}
@@ -109,35 +154,36 @@ const CreateRecipe = () => {
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor="recipeName" className="font-medium text-sm ">
-          Enter summary
+          Summary (Optional)
         </label>
         <textarea
           name="summary"
-          className=" rounded-md p-2 h-20 text-sm outline-none "
-          placeholder="Enter Summary of Recipe"
+          className=" rounded-md px-2 py-3  h-20 text-sm outline-none "
+          placeholder="Enter summary here"
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
         />
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor="instructions" className="font-medium text-sm ">
-          Enter Instructions
+          Instructions
         </label>
-        <textarea
-          name="instructions"
-          className=" rounded-md p-2 h-20 text-sm outline-none"
-          placeholder="Enter Instructions of Recipe"
+        <QuillNoSSRWrapper
+          className="bg-primary rounded-md"
+          modules={modules}
+          placeholder="Enter Instructions"
           value={instructions}
-          onChange={(e) => setInstructions(e.target.value)}
+          onChange={setInstructions}
+          formats={formats}
         />
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor="servings" className="font-medium text-sm ">
-          Enter number of servings
+          Number of Servings (Optional)
         </label>
         <input
           name="servings"
-          className=" rounded-md p-2 text-sm outline-none"
+          className=" rounded-md px-2 py-3  text-sm outline-none"
           type="number"
           placeholder="Enter number of servings"
           value={servings}
@@ -146,11 +192,11 @@ const CreateRecipe = () => {
       </div>
       <div className="flex flex-col gap-1">
         <label htmlFor="time" className="font-medium text-sm">
-          Enter ready in time
+          Ready in Time (Optional)
         </label>
         <input
           name="time"
-          className=" rounded-md p-2 text-sm outline-none"
+          className=" rounded-md px-2 py-3  text-sm outline-none"
           type="number"
           placeholder="Enter the ready in time"
           value={readyIn}
@@ -177,10 +223,11 @@ const CreateRecipe = () => {
             <p className="font-bold text-4xl">
               <AiOutlineCloudUpload />
             </p>
-            <p>Click to upload</p>
+            <p>Click to upload (Required)</p>
             <input
               type="file"
               name="upload-image"
+              required
               className="w-0 h-0"
               accept=".png,.jpeg,.jpg"
               onChange={handleFileChange}
@@ -191,18 +238,19 @@ const CreateRecipe = () => {
           <>
             <div className="h-96 cursor-pointer relative bg-[#d5d8d8]flex flex-col justify-center items-center">
               <Image
-                className="w-full h-full rounded-lg object-cover"
+                className="w-full h-full rounded-lg object-contain bg-slate-100"
                 src={URL.createObjectURL(file)}
                 alt="image-preview"
                 width={500}
                 height={500}
+                onClick={() => setFile(null)}
               />
             </div>
           </>
         )}
       </label>
       <button className="bg-accent hover:bg-accent/90 transition p-3 text-white rounded-md">
-        {uploading ? "Submitting" : "Submit"}
+        {uploading ? "Submitting..." : "Submit"}
       </button>
     </form>
   );

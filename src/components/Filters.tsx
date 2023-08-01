@@ -92,7 +92,7 @@ export default function MyModal() {
                     )}
                     <button
                       type="button"
-                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent px-4 py-2 text-sm font-medium transition hover:bg-accent/90 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex w-full justify-center rounded-md border border-transparent font-bold bg-accent px-4 py-2 transition hover:bg-accent/90 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Done

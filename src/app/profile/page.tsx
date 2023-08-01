@@ -5,6 +5,18 @@ import Image from "next/image";
 import { AiOutlinePlus } from "react-icons/ai";
 import Avatar from "@/components/Avatar";
 
+type createdRecipeProps = {
+  created_at: string | null;
+  id: number;
+  image: string;
+  instructions: string;
+  name: string;
+  readyInMinutes: number;
+  servings: number;
+  summary: string;
+  user_id: string;
+};
+
 const Profile = async () => {
   const supabase = createServerClient();
 

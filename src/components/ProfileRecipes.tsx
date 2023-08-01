@@ -15,9 +15,9 @@ type createdRecipeProps = {
   image: string;
   instructions: string;
   name: string;
-  readyInMinutes: number;
-  servings: number;
-  summary: string;
+  readyInMinutes: number | null;
+  servings: number | null;
+  summary: string | null;
   user_id: string;
 };
 
@@ -44,12 +44,16 @@ const ProfileRecipes = ({
         <div className="mb-2 flex items-center gap-1">
           <BiTimer className="w-7 h-7 text-accent" />
           <span className="text-xs font-medium">
-            {createdRecipes.readyInMinutes} mins
+            {createdRecipes.readyInMinutes
+              ? createdRecipes.readyInMinutes + " mins"
+              : "N/A"}
           </span>
           <section className="flex items-center ml-3 gap-1">
             <PiCookingPotLight className="w-7 h-7 text-secondary" />
             <span className="text-xs font-medium">
-              {createdRecipes.servings} servings
+              {createdRecipes.servings
+                ? createdRecipes.servings + " serving"
+                : "N/A"}
             </span>
           </section>
         </div>

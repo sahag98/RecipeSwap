@@ -129,10 +129,9 @@ export interface Database {
           image: string
           instructions: string
           name: string
-          readyInMinutes: number
-          reviews: Json[] | null
-          servings: number
-          summary: string
+          readyInMinutes: number | null
+          servings: number | null
+          summary: string | null
           user_id: string
         }
         Insert: {
@@ -143,10 +142,9 @@ export interface Database {
           image: string
           instructions: string
           name: string
-          readyInMinutes: number
-          reviews?: Json[] | null
-          servings: number
-          summary: string
+          readyInMinutes?: number | null
+          servings?: number | null
+          summary?: string | null
           user_id: string
         }
         Update: {
@@ -157,10 +155,9 @@ export interface Database {
           image?: string
           instructions?: string
           name?: string
-          readyInMinutes?: number
-          reviews?: Json[] | null
-          servings?: number
-          summary?: string
+          readyInMinutes?: number | null
+          servings?: number | null
+          summary?: string | null
           user_id?: string
         }
         Relationships: [

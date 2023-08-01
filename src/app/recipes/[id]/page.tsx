@@ -10,6 +10,8 @@ import { Metadata, ResolvingMetadata } from "next";
 import Review from "@/components/Review";
 import { AiFillHeart } from "react-icons/ai";
 import Likes from "@/components/Likes";
+import parse from "html-react-parser";
+
 export type searchParamProps = {
   id: any;
 };
@@ -129,13 +131,20 @@ const page = async ({ params }: { params: searchParamProps }) => {
         {/* <h2 className="font-semibold lg:text-lg text-gray-700">
           Recipe Information
         </h2> */}
+
         <div className="flex items-center gap-1">
           <h1 className="font-bold text-secondary">Ready In:</h1>
-          <p className="font-medium">{recipe[0]?.readyInMinutes} mins</p>
+          <p className="font-medium">
+            {recipe[0]?.readyInMinutes
+              ? recipe[0]?.readyInMinutes + " mins"
+              : "N/A"}
+          </p>
         </div>
         <div className="flex items-center gap-1">
           <h1 className="font-bold text-secondary">Servings:</h1>
-          <p className="font-medium">{recipe[0]?.servings}</p>
+          <p className="font-medium">
+            {recipe[0]?.servings ? recipe[0]?.servings : "N/A"}
+          </p>
         </div>
         {/* {session && (
           <FavoriteButton favorites={favorites} recipesInfo={recipe[0]} />
@@ -143,13 +152,18 @@ const page = async ({ params }: { params: searchParamProps }) => {
       </section>
       <section className="flex-1 flex flex-col gap-3">
         <div>
-          <h2 className="font-bold text-gray-700">Instructions</h2>
-          <p className="leading-7 text-justify">{recipe[0]?.instructions}</p>
+          <h2 className="font-bold text-gray-700 text-lg">Instructions</h2>
+          <p className="leading-7 text-justify">
+            {parse(recipe[0]?.instructions)}
+          </p>
         </div>
-        <div>
-          <h2 className="font-bold text-gray-700">Summary</h2>
-          <p className="leading-7 text-justify">{recipe[0]?.summary}</p>
-        </div>
+        {recipe[0].summary && (
+          <div>
+            <h2 className="font-bold text-gray-700">Summary</h2>
+            <p className="leading-7 text-justify">{recipe[0]?.summary}</p>
+          </div>
+        )}
+
         <div>
           <Review RecipeId={recipe[0].id} />
         </div>

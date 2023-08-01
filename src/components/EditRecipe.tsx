@@ -4,17 +4,55 @@ import { Fragment, useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { useSupabase } from "./supabase-provider";
 import { useRouter } from "next/navigation";
+import parse from "html-react-parser";
+import dynamic from "next/dynamic";
+import { AiFillCloseCircle } from "react-icons/ai";
+
+const QuillNoSSRWrapper = dynamic(() => import("react-quill"), { ssr: false });
 
 type editRecipeProps = {
   id: number;
   image: string;
   instructions: string;
   name: string;
-  mins: number;
-  servings: number;
-  summary: string;
+  mins: number | null;
+  servings: number | null;
+  summary: string | null;
   userId: string;
 };
+
+const modules = {
+  toolbar: [
+    ["bold", "italic", "underline"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" },
+    ],
+    ["clean"],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+};
+/*
+ * Quill editor formats
+ * See https://quilljs.com/docs/formats/
+ */
+const formats = [
+  "header",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+];
 
 export default function EditRecipe({
   id,
@@ -29,10 +67,10 @@ export default function EditRecipe({
   let [isOpen, setIsOpen] = useState(false);
   const { supabase, session } = useSupabase();
   const [newRecipeName, setNewRecipeName] = useState(name);
-  const [newSummary, setNewSummary] = useState(summary);
+  const [newSummary, setNewSummary] = useState(summary ? summary : "");
   const [newInstructions, setNewInstructions] = useState(instructions);
-  const [newServings, setNewServings] = useState(servings);
-  const [newReadyIn, setNewReadyIn] = useState(mins);
+  const [newServings, setNewServings] = useState(servings ? servings : 0);
+  const [newReadyIn, setNewReadyIn] = useState(mins ? mins : 0);
   const [editing, setEditing] = useState(false);
   const router = useRouter();
   function closeModal() {
@@ -112,16 +150,21 @@ export default function EditRecipe({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md relative transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <AiFillCloseCircle
+                    onClick={closeModal}
+                    className="text-[#ff6262] absolute right-2 top-2 w-9 h-9"
+                  />
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium text-center leading-6 text-secondary"
                   >
                     Edit Recipe
                   </Dialog.Title>
+
                   <form
                     onSubmit={editRecipe}
-                    className="w-full flex flex-col mt-2 gap-2 bg-gray-200 rounded-md p-2"
+                    className="w-full flex flex-col mt-2 gap-2 bg-gray-200 rounded-md p-3"
                   >
                     <div className="flex flex-col gap-1">
                       <label
@@ -150,7 +193,7 @@ export default function EditRecipe({
                         name="summary"
                         className=" rounded-md p-2 h-20 text-sm outline-none "
                         placeholder="Enter Summary of Recipe"
-                        value={newSummary}
+                        value={newSummary!}
                         onChange={(e) => setNewSummary(e.target.value)}
                       />
                     </div>
@@ -161,12 +204,12 @@ export default function EditRecipe({
                       >
                         Edit Instructions
                       </label>
-                      <textarea
-                        name="instructions"
-                        className=" rounded-md p-2 h-20 text-sm outline-none"
-                        placeholder="Enter Instructions of Recipe"
+                      <QuillNoSSRWrapper
+                        className="bg-primary rounded-md"
+                        modules={modules}
                         value={newInstructions}
-                        onChange={(e) => setNewInstructions(e.target.value)}
+                        onChange={setNewInstructions}
+                        formats={formats}
                       />
                     </div>
                     <div className="flex flex-col gap-1">
@@ -204,9 +247,9 @@ export default function EditRecipe({
                     <button
                       type="submit"
                       disabled={editing}
-                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent px-4 py-2 text-sm font-medium text-white  focus:outline-none hover:bg-accent/90 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent px-4 py-2  font-semibold tracking-wider text-white  focus:outline-none hover:bg-accent/90 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     >
-                      {editing ? "Confirming" : "Confirm"}
+                      {editing ? "Confirming..." : "Confirm"}
                     </button>
                   </form>
 
