@@ -249,9 +249,21 @@ const CreateRecipe = () => {
           </>
         )}
       </label>
-      <button className="bg-accent hover:bg-accent/90 transition p-3 text-white rounded-md">
-        {uploading ? "Submitting..." : "Submit"}
-      </button>
+      <div className="flex justify-end space-x-2">
+        <button
+          type="button"
+          onClick={() => router.push("/recipes")}
+          className="bg-primary border border-accent px-4 py-2 hover:bg-accent/5 transition text-accent rounded-md"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="bg-accent px-4 py-2 hover:bg-accent/80 transition text-white rounded-md"
+        >
+          {uploading ? "Submitting..." : "Submit"}
+        </button>
+      </div>
     </form>
   );
 };

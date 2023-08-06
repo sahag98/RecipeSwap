@@ -151,11 +151,7 @@ export default function EditRecipe({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md relative transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <AiFillCloseCircle
-                    onClick={closeModal}
-                    className="text-[#ff6262] absolute right-2 top-2 w-9 h-9"
-                  />
+                <Dialog.Panel className="w-full max-w-lg relative transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium text-center leading-6 text-secondary"
@@ -245,13 +241,23 @@ export default function EditRecipe({
                         onChange={(e) => setNewReadyIn(e.target.valueAsNumber)}
                       />
                     </div>
-                    <button
-                      type="submit"
-                      disabled={editing}
-                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent px-4 py-2  font-semibold tracking-wider text-white  focus:outline-none hover:bg-accent/90 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    >
-                      {editing ? "Confirming..." : "Confirm"}
-                    </button>
+                    <div className="flex justify-end mt-1 space-x-2">
+                      <button
+                        type="button"
+                        onClick={closeModal}
+                        disabled={editing}
+                        className="inline-flex justify-center rounded-md border bg-primary border-accent px-4 py-2  font-semibold tracking-wider text-accent transition  focus:outline-none hover:bg-accent/5 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={editing}
+                        className="inline-flex justify-center rounded-md border border-transparent bg-accent px-4 py-2  font-semibold tracking-wider text-white transition focus:outline-none hover:bg-accent/80 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      >
+                        {editing ? "Confirming..." : "Confirm"}
+                      </button>
+                    </div>
                   </form>
 
                   <div className="mt-4"></div>
