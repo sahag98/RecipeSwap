@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { Button } from "./ui/button";
 
 const Hero = async () => {
   const supabase = createServerClient();
@@ -31,23 +32,24 @@ const Hero = async () => {
           Delightful Recipes.
         </p>
         <section className="flex items-center justify-center w-full gap-3">
-          <Link
-            className="w-1/2  flex items-center justify-center"
-            href="/recipes"
-          >
-            <button className=" bg-accent border border-accent w-full shadow-lg mt-1 font-medium text-white px-4 py-3  rounded-md hover:bg-accent/80 transition">
+          <Link className="  flex items-center justify-center" href="/recipes">
+            <Button size={"lg"} className="bg-accent ">
               Get Started
-            </button>
+            </Button>
+            {/* <button className=" bg-accent border border-accent w-full shadow-lg mt-1 font-medium text-white px-4 py-3  rounded-md hover:bg-accent/80 transition">
+              Get Started
+            </button> */}
           </Link>
           {session?.user && (
-            <Link
-              className="w-1/2 flex items-center justify-center"
-              href="/create"
-            >
-              <button className="flex w-full items-center justify-center gap-2 border border-accent shadow-lg mt-1 font-medium text-accent  py-3  rounded-md hover:bg-accent hover:text-white transition">
-                <span>Create Recipe</span>
-                <AiOutlinePlusCircle className="w-6 h-6" />
-              </button>
+            <Link className=" flex items-center justify-center" href="/create">
+              <Button
+                size={"lg"}
+                variant={"outline"}
+                className="space-x-2 text-accent"
+              >
+                <span>Create</span>
+                <AiOutlinePlusCircle className="w-7 h-7" />
+              </Button>
             </Link>
           )}
         </section>
