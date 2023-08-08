@@ -4,10 +4,9 @@ import { Fragment, useState } from "react";
 import { FiEdit2 } from "react-icons/fi";
 import { useSupabase } from "./supabase-provider";
 import { useRouter } from "next/navigation";
-import parse from "html-react-parser";
+import { toast } from "react-hot-toast";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { AiFillCloseCircle } from "react-icons/ai";
 
 const QuillNoSSRWrapper = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -105,9 +104,11 @@ export default function EditRecipe({
       if (error) {
         throw error;
       }
+      toast.success("Successfully edited recipe.");
       router.refresh();
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong.");
     } finally {
       setEditing(false);
       closeModal();

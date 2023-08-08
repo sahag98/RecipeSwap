@@ -1,4 +1,5 @@
 export const cuisines = [
+  "None",
   "african",
   "chinese",
   "japanese",
@@ -26,6 +27,7 @@ export const cuisines = [
 ];
 
 export const diets = [
+  "None",
   "pescetarian",
   "lacto vegetarian",
   "ovo vegetarian",

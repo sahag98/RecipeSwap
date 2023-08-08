@@ -6,6 +6,8 @@ import { AiOutlineCloudUpload, AiOutlinePlus } from "react-icons/ai";
 import { Dialog, Transition } from "@headlessui/react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
+import { toast } from "react-hot-toast";
 
 const Avatar = ({ avatar }: any) => {
   const [file, setFile] = useState<any>(null);
@@ -65,9 +67,11 @@ const Avatar = ({ avatar }: any) => {
         throw error;
       }
       setFile(null);
+      toast.success("Successfully changed profile picture.");
       router.refresh();
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong.");
     } finally {
       closeModal();
       setUploading(false);
@@ -169,15 +173,20 @@ const Avatar = ({ avatar }: any) => {
                       )}
                     </label>
 
-                    <div className="mt-4">
-                      <button
+                    <div className="mt-4 gap-3 flex items-center justify-end">
+                      <Button
                         type="button"
+                        onClick={closeModal}
                         disabled={uploading}
-                        className="inline-flex w-full justify-center rounded-md border border-transparent bg-accent transition px-4 py-2 text-sm font-medium text-white hover:bg-accent/90 focus:outline-none "
-                        onClick={handleUpload}
+                        size={"lg"}
+                        variant={"outline"}
+                        className="space-x-2 text-accent"
                       >
-                        {uploading ? "Uploading..." : "Change"}
-                      </button>
+                        Cancel
+                      </Button>
+                      <Button onClick={handleUpload} size={"lg"}>
+                        {uploading ? "Changing..." : "Change"}
+                      </Button>
                     </div>
                   </Dialog.Panel>
                 </Transition.Child>

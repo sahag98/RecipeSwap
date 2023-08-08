@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { useSupabase } from "./supabase-provider";
-
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -121,9 +121,11 @@ const CreateRecipe = () => {
       setServings(0);
       setInstructions("");
       setFile(null);
+      toast.success("Recipe created.");
       router.refresh();
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong.");
     } finally {
       setUploading(false);
     }
@@ -229,7 +231,7 @@ const CreateRecipe = () => {
               name="upload-image"
               required
               className="w-0 h-0"
-              accept=".png,.jpeg,.jpg"
+              accept=".png,.jpeg,.jpg .webp"
               onChange={handleFileChange}
             />
           </div>

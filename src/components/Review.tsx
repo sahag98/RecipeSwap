@@ -5,6 +5,7 @@ import { useSupabase } from "./supabase-provider";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { Dialog, Transition } from "@headlessui/react";
+import { toast } from "react-hot-toast";
 
 const Review = ({ RecipeId }: any) => {
   const { supabase, session } = useSupabase();
@@ -45,9 +46,10 @@ const Review = ({ RecipeId }: any) => {
       });
 
       setComment("");
+      toast.success("Review added successfully.");
       router.refresh();
     } catch (error) {
-      throw error;
+      toast.error("Something went wrong.");
     } finally {
     }
   }

@@ -12,7 +12,6 @@ const Hero = async () => {
     data: { session },
   } = await supabase.auth.getSession();
 
-  console.log(session);
   return (
     <main className="flex w-full items-center h-full justify-center flex-col gap-3">
       <div className="mb-12 rounded-full flex flex-col justify-center items-center gap-2">
@@ -33,7 +32,7 @@ const Hero = async () => {
         </p>
         <section className="flex items-center justify-center w-full gap-3">
           <Link className="  flex items-center justify-center" href="/recipes">
-            <Button size={"lg"} className="bg-accent ">
+            <Button size={"lg"} className="bg-accent text-lg ">
               Get Started
             </Button>
             {/* <button className=" bg-accent border border-accent w-full shadow-lg mt-1 font-medium text-white px-4 py-3  rounded-md hover:bg-accent/80 transition">
@@ -47,7 +46,7 @@ const Hero = async () => {
                 variant={"outline"}
                 className="space-x-2 text-accent"
               >
-                <span>Create</span>
+                <span className="text-lg">Create</span>
                 <AiOutlinePlusCircle className="w-7 h-7" />
               </Button>
             </Link>

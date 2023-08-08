@@ -8,6 +8,7 @@ import { createServerClient } from "../utils/supabase-server";
 import NextTopLoader from "nextjs-toploader";
 import type { Database } from "@/types/supabase-types";
 import type { SupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { ToastProvider } from "@/components/toast-provider";
 
 export type TypedSupabaseClient = SupabaseClient<Database>;
 const inter = Inter({ subsets: ["latin"] });
@@ -47,6 +48,7 @@ export default async function RootLayout({
           <SupabaseListener serverAccessToken={session?.access_token} />
 
           <NextTopLoader color="#E0777D" showSpinner={false} />
+          <ToastProvider />
           <div className="lg:px-64 relative">
             <Navbar avatar={avatar} />
           </div>

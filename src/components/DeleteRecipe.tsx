@@ -1,7 +1,7 @@
 "use client";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { FiEdit2 } from "react-icons/fi";
+import { toast } from "react-hot-toast";
 import { useSupabase } from "./supabase-provider";
 import { useRouter } from "next/navigation";
 import { MdClose } from "react-icons/md";
@@ -37,10 +37,11 @@ export default function DeleteRecipe({ id }: editRecipeProps) {
       if (error) {
         throw error;
       }
-
+      toast.success("Successfully deleted recipe.");
       router.refresh();
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong.");
     } finally {
       setDeleting(false);
       closeModal();

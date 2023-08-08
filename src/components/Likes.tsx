@@ -4,6 +4,7 @@ import { useSupabase } from "./supabase-provider";
 import { useRouter } from "next/navigation";
 import { Dialog, Transition } from "@headlessui/react";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-hot-toast";
 
 type likeProps = {
   recipeId: number;
@@ -55,6 +56,7 @@ const Likes = ({ recipeId, userId, likes, isLikedByMe }: likeProps) => {
         .delete()
         .eq("recipe_id", recipeId)
         .eq("user_id", userId);
+      toast.error("Successfully disliked recipe.");
     } else {
       const { data, error } = await supabase.from("likes").insert({
         recipe_id: recipeId,
@@ -64,6 +66,7 @@ const Likes = ({ recipeId, userId, likes, isLikedByMe }: likeProps) => {
       if (error) {
         console.log(error);
       }
+      toast.success("Successfully liked recipe.");
     }
     router.refresh();
   }
