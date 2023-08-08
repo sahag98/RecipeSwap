@@ -72,26 +72,20 @@ const page = async ({ params }: { params: searchParamProps }) => {
     throw new Error("Something went wrong.");
   }
 
-  // let { data: ReviewProfile, error: ReviewError } = await supabase
-  //   .from("reviews")
-  //   .select("*, profiles(*)")
-  //   .eq("id", recipe[0].user_id);
-
   const { data: reviews, error: reviewError } = await supabase
     .from("reviews")
     .select("*, profiles(*)")
-    .eq("recipe_id", recipe[0].id);
+    .eq("recipe_id", recipe[0].id)
+    .order("id", { ascending: false });
 
   if (!reviews) {
     console.log("No reviews yet");
   }
 
-  console.log(reviews);
-
-  const { data: favorites } = await supabase
-    .from("profiles")
-    .select("favorites")
-    .eq("id", session?.user.id);
+  // const { data: favorites } = await supabase
+  //   .from("profiles")
+  //   .select("favorites")
+  //   .eq("id", session?.user.id);
 
   const { data: likes, error: likesError } = await supabase
     .from("likes")
@@ -104,10 +98,10 @@ const page = async ({ params }: { params: searchParamProps }) => {
     <div className="mb-2">
       <ScrollTop />
       <section className="flex flex-col flex-2 gap-2 mb-2">
-        <div className="max-h-[450px] w-full shadow-md flex justify-center items-center object-fill md:bg-secondary lg:bg-secondary rounded-lg overflow-hidden">
+        <div className="max-h-[450px] w-full shadow-md flex justify-center items-center object-fill md:bg-accent/20 lg:bg-accent/20 rounded-lg overflow-hidden">
           <Image
             loading="lazy"
-            className="lg:w-1/2 lg:h-96 h-80 object-cover"
+            className="lg:w-1/2 lg:h-96 h-80 object-cover lg:object-contain"
             src={recipe[0]?.image}
             alt={`picture`}
             width={450}
@@ -147,10 +141,6 @@ const page = async ({ params }: { params: searchParamProps }) => {
               </h2>
             </div>
           </section>
-          {/* <h2 className="font-semibold lg:text-lg text-gray-700">
-          Recipe Information
-        </h2> */}
-
           <div className="flex items-center gap-1">
             <h1 className="font-bold text-sm lg:text-base text-secondary">
               Ready In:

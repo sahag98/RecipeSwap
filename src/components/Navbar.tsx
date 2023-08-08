@@ -52,15 +52,10 @@ const Navbar = ({ avatar }: any) => {
         {session?.user && (
           <Link className="hidden lg:flex" href="/create">
             <li className="font-medium hover:text-secondary/80 text-sm lg:text-base text-secondary">
-              Create A Recipe
+              Create Recipe
             </li>
           </Link>
         )}
-        {/* <Link href="/favorites">
-          <li className="hidden font-medium text-sm lg:text-base text-secondary">
-            Favorites (Coming Soon!)
-          </li>
-        </Link> */}
       </ul>
       <div className="z-20 text-right">
         <Menu as="div" className="relative inline-block text-left">
@@ -106,7 +101,7 @@ const Navbar = ({ avatar }: any) => {
             <Menu.Items className="absolute right-0 mt-2 w-52 origin-top-right divide-y divide-gray-100 rounded-md bg-primary shadow-lg shadow-secondary/25 ring-1 ring-secondary ring-opacity-10 focus:outline-none">
               <div className="p-2 ">
                 <Link href="/create">
-                  <Menu.Item as="div" className="mb-2">
+                  <Menu.Item as="div" className="mb-2 lg:hidden">
                     {({ active }) => (
                       <button
                         className={`${
