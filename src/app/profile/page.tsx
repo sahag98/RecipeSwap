@@ -29,6 +29,13 @@ const Profile = async () => {
     .select("avatar_url")
     .eq("id", session?.user.id);
 
+  const { data: userLikes, error: reviewError } = await supabase
+    .from("profiles")
+    .select("*, likes(*)")
+    .eq("id", session?.user.id);
+
+  // console.log("user likes: ", userLikes[0].likes);
+
   if (!avatar) {
     return;
   }

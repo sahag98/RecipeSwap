@@ -11,6 +11,8 @@ import Review from "@/components/Review";
 import { AiFillHeart } from "react-icons/ai";
 import Likes from "@/components/Likes";
 import parse from "html-react-parser";
+import { BsFillBookmarkPlusFill } from "react-icons/bs";
+import Save from "@/components/Save";
 
 export type searchParamProps = {
   id: any;
@@ -92,8 +94,14 @@ const page = async ({ params }: { params: searchParamProps }) => {
     .select()
     .eq("recipe_id", recipe[0].id);
 
+  const { data: saves, error: savesError } = await supabase
+    .from("favorites")
+    .select()
+    .eq("recipe_id", recipe[0].id);
+
   const isLikedByMe = !!likes?.find((like) => like.user_id == session?.user.id);
 
+  const isSavedByMe = !!saves?.find((save) => save.user_id == session?.user.id);
   return (
     <div className="mb-2">
       <ScrollTop />
@@ -119,6 +127,12 @@ const page = async ({ params }: { params: searchParamProps }) => {
                   recipeId={recipe[0].id}
                   likes={likes}
                   isLikedByMe={isLikedByMe}
+                  userId={session ? session?.user.id : null}
+                />
+                <Save
+                  recipeId={recipe[0].id}
+                  saves={saves}
+                  isSavedByMe={isSavedByMe}
                   userId={session ? session?.user.id : null}
                 />
               </div>
