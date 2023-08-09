@@ -39,8 +39,8 @@ const Navbar = ({ avatar }: any) => {
   return (
     <nav className="lg:py-2 lg:px-0 py-2 px-4 relative flex items-center justify-between ">
       <Link href="/">
-        <h1 className="font-bold text-2xl lg:text-2xl bg-gradient-to-r from-sky-300 to-red-400 bg-clip-text text-transparent">
-          RecipeSwap
+        <h1 className="font-bold text-3xl lg:text-4xl bg-gradient-to-r from-sky-300 to-red-400 bg-clip-text text-transparent">
+          RS
         </h1>
       </Link>
       <ul className="flex items-center gap-5">

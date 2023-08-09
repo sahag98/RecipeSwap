@@ -181,16 +181,22 @@ const page = async ({ params }: { params: searchParamProps }) => {
         </section>
       </section>
       <section className="flex-1 flex flex-col gap-3">
+        {recipe[0].summary && (
+          <div>
+            <h2 className="font-bold text-gray-700 text-lg">Summary</h2>
+            <p className="leading-7">{recipe[0]?.summary}</p>
+          </div>
+        )}
+        {recipe[0].ingredients && (
+          <div>
+            <h2 className="font-bold text-gray-700 text-lg">Ingredients</h2>
+            <p className="leading-7">{parse(recipe[0]?.ingredients)}</p>
+          </div>
+        )}
         <div>
           <h2 className="font-bold text-gray-700 text-lg">Instructions</h2>
           <p className="leading-7">{parse(recipe[0]?.instructions)}</p>
         </div>
-        {recipe[0].summary && (
-          <div>
-            <h2 className="font-bold text-gray-700">Summary</h2>
-            <p className="leading-7">{recipe[0]?.summary}</p>
-          </div>
-        )}
 
         <div>
           <section className="flex items-center mb-1 gap-1">

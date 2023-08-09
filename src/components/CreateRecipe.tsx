@@ -24,12 +24,7 @@ const QuillNoSSRWrapper = dynamic(() => import("react-quill"), { ssr: false });
 const modules = {
   toolbar: [
     ["bold", "italic", "underline"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
+    [{ list: "ordered" }, { list: "bullet" }],
     ["clean"],
   ],
   clipboard: {
@@ -59,6 +54,7 @@ const CreateRecipe = () => {
   const [recipeName, setRecipeName] = useState("");
   const [summary, setSummary] = useState("");
   const [instructions, setInstructions] = useState("");
+  const [ingredients, setIngredients] = useState("");
   const [cuisine, setCuisine] = useState(cuisines[0]);
   const [diet, setDiet] = useState(diets[0]);
   const [servings, setServings] = useState(0);
@@ -105,6 +101,7 @@ const CreateRecipe = () => {
         instructions: instructions,
         servings: servings,
         readyInMinutes: readyIn,
+        ingredients: ingredients,
         summary: summary,
         user_id: session?.user.id,
         cuisine,
@@ -118,6 +115,7 @@ const CreateRecipe = () => {
       setSummary("");
       setReadyIn(0);
       setRecipeName("");
+      setIngredients("");
       setServings(0);
       setInstructions("");
       setFile(null);
@@ -161,9 +159,22 @@ const CreateRecipe = () => {
         <textarea
           name="summary"
           className=" rounded-md px-2 py-3  h-20 text-sm outline-none "
-          placeholder="Enter summary here"
+          placeholder="For the best results, it’s best to marinate the chicken overnight."
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
+        />
+      </div>
+      <div className="flex flex-col gap-1">
+        <label htmlFor="instructions" className="font-medium text-sm ">
+          Ingredients
+        </label>
+        <QuillNoSSRWrapper
+          className="bg-primary rounded-md"
+          modules={modules}
+          placeholder="Chicken, olive oil, lemon"
+          value={ingredients}
+          onChange={setIngredients}
+          formats={formats}
         />
       </div>
       <div className="flex flex-col gap-1">
@@ -173,7 +184,7 @@ const CreateRecipe = () => {
         <QuillNoSSRWrapper
           className="bg-primary rounded-md"
           modules={modules}
-          placeholder="Enter Instructions"
+          placeholder="Mix marinade"
           value={instructions}
           onChange={setInstructions}
           formats={formats}

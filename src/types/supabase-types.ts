@@ -167,6 +167,7 @@ export interface Database {
           diet: string
           id: number
           image: string
+          ingredients: string | null
           instructions: string
           name: string
           readyInMinutes: number | null
@@ -180,6 +181,7 @@ export interface Database {
           diet: string
           id?: number
           image: string
+          ingredients?: string | null
           instructions: string
           name: string
           readyInMinutes?: number | null
@@ -193,6 +195,7 @@ export interface Database {
           diet?: string
           id?: number
           image?: string
+          ingredients?: string | null
           instructions?: string
           name?: string
           readyInMinutes?: number | null

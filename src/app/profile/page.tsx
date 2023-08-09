@@ -27,9 +27,10 @@ const Profile = async () => {
 
   const { data: avatar } = await supabase
     .from("profiles")
-    .select("avatar_url")
+    .select("avatar_url, full_name")
     .eq("id", session?.user.id);
 
+  console.log(avatar);
   const { data: favorites, error: favoritesError } = await supabase
     .from("favorites")
     .select("*")
@@ -49,7 +50,6 @@ const Profile = async () => {
   return (
     <div className="flex flex-col my-5 justify-center gap-5 items-center">
       <Avatar avatar={avatar} />
-      <h1 className="font-bold text-lg">{session?.user.user_metadata.name}</h1>
 
       {recipes?.length === 0 ? (
         <>
@@ -64,15 +64,7 @@ const Profile = async () => {
           />
         </>
       ) : (
-        <>
-          <TabSwitch recipes={recipes} favorites={favorites} />
-          {/* <h2 className="font-medium text-lg text-secondary">
-            Recipes created
-          </h2> */}
-          {/* {recipes?.map((recipe) => (
-            <ProfileRecipes key={recipe.id} createdRecipes={recipe} />
-          ))} */}
-        </>
+        <TabSwitch recipes={recipes} favorites={favorites!} />
       )}
     </div>
   );
