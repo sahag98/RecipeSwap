@@ -4,6 +4,7 @@ import ProfileRecipes from "@/components/ProfileRecipes";
 import Image from "next/image";
 import { AiOutlinePlus } from "react-icons/ai";
 import Avatar from "@/components/Avatar";
+import { TabSwitch } from "@/components/Tabs";
 
 type createdRecipeProps = {
   created_at: string | null;
@@ -29,10 +30,10 @@ const Profile = async () => {
     .select("avatar_url")
     .eq("id", session?.user.id);
 
-  const { data: userLikes, error: reviewError } = await supabase
-    .from("profiles")
-    .select("*, likes(*)")
-    .eq("id", session?.user.id);
+  const { data: favorites, error: favoritesError } = await supabase
+    .from("favorites")
+    .select("*")
+    .eq("user_id", session?.user.id);
 
   // console.log("user likes: ", userLikes[0].likes);
 
@@ -64,12 +65,13 @@ const Profile = async () => {
         </>
       ) : (
         <>
-          <h2 className="font-medium text-lg text-secondary">
+          <TabSwitch recipes={recipes} favorites={favorites} />
+          {/* <h2 className="font-medium text-lg text-secondary">
             Recipes created
-          </h2>
-          {recipes?.map((recipe) => (
+          </h2> */}
+          {/* {recipes?.map((recipe) => (
             <ProfileRecipes key={recipe.id} createdRecipes={recipe} />
-          ))}
+          ))} */}
         </>
       )}
     </div>

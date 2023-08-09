@@ -27,7 +27,7 @@ const ProfileRecipes = ({
   createdRecipes: createdRecipeProps;
 }) => {
   return (
-    <div className="bg-primary relative shadow-lg shadow-[#ebebeb]  border flex h-32 gap-2 w-full overflow-hidden rounded-xl">
+    <div className="bg-primary relative shadow-md shadow-[#ebebeb]  border flex h-32 mb-5 gap-2 w-full overflow-hidden rounded-xl">
       {createdRecipes.image && (
         <Image
           className="w-1/3 lg:w-1/4 border-r object-cover h-full"

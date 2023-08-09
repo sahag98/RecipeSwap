@@ -11,6 +11,8 @@ type saveProps = {
   recipeId: number;
   userId: string | null;
   isSavedByMe: boolean;
+  recipeName: string;
+  recipeImg: string;
   saves:
     | {
         created_at: string | null;
@@ -21,7 +23,14 @@ type saveProps = {
     | null;
 };
 
-const Save = ({ recipeId, userId, saves, isSavedByMe }: saveProps) => {
+const Save = ({
+  recipeId,
+  userId,
+  recipeName,
+  recipeImg,
+  saves,
+  isSavedByMe,
+}: saveProps) => {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -62,6 +71,8 @@ const Save = ({ recipeId, userId, saves, isSavedByMe }: saveProps) => {
       const { data, error } = await supabase.from("favorites").insert({
         recipe_id: recipeId,
         user_id: userId,
+        favoriteName: recipeName,
+        favoriteImg: recipeImg,
       });
 
       if (error) {
@@ -134,11 +145,23 @@ const Save = ({ recipeId, userId, saves, isSavedByMe }: saveProps) => {
       </Transition>
 
       <button className="flex items-center gap-1" onClick={toggleSave}>
-        {isSavedByMe ? (
-          <BsFillBookmarkDashFill className="w-5 h-5 text-secondary hover:text-secondary/80 transition" />
-        ) : (
-          <BsFillBookmarkPlusFill className="w-5 h-5 text-accent hover:text-accent/80 transition" />
-        )}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          className={
+            "w-6 h-6 lg:hover:fill-yellow-200 md:hover:fill-yellow-200 transition " +
+            (isSavedByMe ? "fill-yellow-300" : "")
+          }
+        >
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
 
         {saves?.length}
       </button>

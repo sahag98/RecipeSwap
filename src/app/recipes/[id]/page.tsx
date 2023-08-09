@@ -131,6 +131,8 @@ const page = async ({ params }: { params: searchParamProps }) => {
                 />
                 <Save
                   recipeId={recipe[0].id}
+                  recipeName={recipe[0].name}
+                  recipeImg={recipe[0].image}
                   saves={saves}
                   isSavedByMe={isSavedByMe}
                   userId={session ? session?.user.id : null}

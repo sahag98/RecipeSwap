@@ -52,18 +52,24 @@ export interface Database {
       favorites: {
         Row: {
           created_at: string | null
+          favoriteImg: string | null
+          favoriteName: string | null
           id: number
           recipe_id: number | null
           user_id: string | null
         }
         Insert: {
           created_at?: string | null
+          favoriteImg?: string | null
+          favoriteName?: string | null
           id?: number
           recipe_id?: number | null
           user_id?: string | null
         }
         Update: {
           created_at?: string | null
+          favoriteImg?: string | null
+          favoriteName?: string | null
           id?: number
           recipe_id?: number | null
           user_id?: string | null
