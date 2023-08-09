@@ -7,6 +7,9 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Button } from "./ui/button";
 
 const QuillNoSSRWrapper = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -171,9 +174,8 @@ export default function EditRecipe({
                       >
                         Edit name
                       </label>
-                      <input
+                      <Input
                         name="recipeName"
-                        className="rounded-md text-sm p-2 outline-none"
                         type="text"
                         placeholder="Chicken Shawerma"
                         value={newRecipeName}
@@ -187,9 +189,8 @@ export default function EditRecipe({
                       >
                         Edit summary
                       </label>
-                      <textarea
+                      <Textarea
                         name="summary"
-                        className=" rounded-md p-2 h-20 text-sm outline-none "
                         placeholder="Enter Summary of Recipe"
                         value={newSummary!}
                         onChange={(e) => setNewSummary(e.target.value)}
@@ -217,9 +218,8 @@ export default function EditRecipe({
                       >
                         Edit number of servings
                       </label>
-                      <input
+                      <Input
                         name="servings"
-                        className=" rounded-md p-2 text-sm outline-none"
                         type="number"
                         placeholder="Enter number of servings"
                         value={newServings}
@@ -233,9 +233,8 @@ export default function EditRecipe({
                       >
                         Edit ready in time
                       </label>
-                      <input
+                      <Input
                         name="time"
-                        className=" rounded-md p-2 text-sm outline-none"
                         type="number"
                         placeholder="Enter the ready in time"
                         value={newReadyIn}
@@ -243,21 +242,17 @@ export default function EditRecipe({
                       />
                     </div>
                     <div className="flex justify-end mt-1 space-x-2">
-                      <button
+                      <Button
                         type="button"
                         onClick={closeModal}
                         disabled={editing}
-                        className="inline-flex justify-center rounded-md border bg-primary border-accent px-4 py-2  font-semibold tracking-wider text-accent transition  focus:outline-none hover:bg-accent/5 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        variant={"outline"}
                       >
                         Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={editing}
-                        className="inline-flex justify-center rounded-md border border-transparent bg-accent px-4 py-2  font-semibold tracking-wider text-white transition focus:outline-none hover:bg-accent/80 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      >
+                      </Button>
+                      <Button type="submit" disabled={editing}>
                         {editing ? "Confirming..." : "Confirm"}
-                      </button>
+                      </Button>
                     </div>
                   </form>
 

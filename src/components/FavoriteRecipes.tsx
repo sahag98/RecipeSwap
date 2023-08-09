@@ -14,7 +14,7 @@ export type favoriteProps = {
 
 const FavoriteRecipes = ({ favorite }: { favorite: favoriteProps }) => {
   return (
-    <div className="bg-primary border border-gray-200 relative shadow-md shadow-[#ebebeb] flex flex-col mb-5 gap-2 lg:w-1/4 overflow-hidden rounded-xl">
+    <div className="bg-primary border border-gray-200 dark:border-primary-foreground relative shadow-md shadow-[#ebebeb] dark:shadow-none dark:bg-primary-foreground flex flex-col mb-5 gap-2 lg:w-1/4 overflow-hidden rounded-xl">
       {favorite?.favoriteImg && (
         <Image
           className="w-full border-r object-cover h-full"

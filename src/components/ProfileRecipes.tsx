@@ -27,7 +27,7 @@ const ProfileRecipes = ({
   createdRecipes: createdRecipeProps;
 }) => {
   return (
-    <div className="bg-primary relative shadow-md shadow-[#ebebeb]  border flex h-32 mb-5 gap-2 w-full overflow-hidden rounded-xl">
+    <div className="bg-primary relative shadow-md shadow-[#ebebeb]  border flex h-32 mb-5 gap-2 w-full dark:shadow-none dark:bg-primary-foreground overflow-hidden rounded-xl">
       {createdRecipes.image && (
         <Image
           className="w-1/3 lg:w-1/4 border-r object-cover h-full"
@@ -43,14 +43,14 @@ const ProfileRecipes = ({
         </h2>
         <div className="mb-2 flex items-center gap-1">
           <BiTimer className="w-7 h-7 text-accent" />
-          <span className="text-xs font-medium">
+          <span className="text-xs dark:text-foreground font-medium">
             {createdRecipes.readyInMinutes
               ? createdRecipes.readyInMinutes + " mins"
               : "N/A"}
           </span>
           <section className="flex items-center ml-3 gap-1">
             <PiCookingPotLight className="w-7 h-7 text-secondary" />
-            <span className="text-xs font-medium">
+            <span className="text-xs dark:text-foreground font-medium">
               {createdRecipes.servings
                 ? createdRecipes.servings + " serving"
                 : "N/A"}

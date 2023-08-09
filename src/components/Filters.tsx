@@ -6,6 +6,7 @@ import { FiFilter } from "react-icons/fi";
 import { MdOutlineClear } from "react-icons/md";
 import CustomFilter from "./CustomFilter";
 import { cuisines, diets } from "@/constants";
+import { Button } from "./ui/button";
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false);
@@ -34,7 +35,7 @@ export default function MyModal() {
         <button
           type="button"
           onClick={openModal}
-          className="flex items-center border text-accent border-accent p-2 rounded-md hover:bg-accent transition hover:text-white gap-2 cursor-pointer"
+          className="flex items-center border text-accent border-accent p-2 rounded-md hover:bg-accent dark:hover:bg-primary-foreground transition hover:text-white gap-2 cursor-pointer"
         >
           <FiFilter className="w-6 h-6" />
         </button>
@@ -65,7 +66,7 @@ export default function MyModal() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-4 text-left align-middle shadow-white/30 shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-primary-foreground dark:shadow-none p-4 text-left align-middle shadow-white/30 shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-secondary"
@@ -90,13 +91,13 @@ export default function MyModal() {
                         <MdOutlineClear className="w-6 h-6 " />
                       </button>
                     )}
-                    <button
+                    <Button
+                      className="w-full"
                       type="button"
-                      className="inline-flex w-full justify-center rounded-md border border-transparent font-bold bg-accent px-4 py-2 transition hover:bg-accent/90 text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Done
-                    </button>
+                    </Button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

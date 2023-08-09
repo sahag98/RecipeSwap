@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { createServerClient } from "@/utils/supabase-server";
+import { Button } from "./ui/button";
 
 type RecipeProps = {
   created_at: string | null;
@@ -21,7 +22,7 @@ const RecipeItems = async ({ recipe }: { recipe: RecipeProps }) => {
   const { id, name, image, cuisine, diet } = recipe;
 
   return (
-    <div className="bg-[#dce8ef]  flex flex-col overflow-hidden justify-between lg:w-80 h-[400px] p-2 gap-2 rounded-md">
+    <div className="bg-[#dce8ef] dark:bg-primary-foreground  flex flex-col overflow-hidden justify-between lg:w-80 h-[400px] p-2 gap-2 rounded-md">
       <div className="h-80 object-fill rounded-md overflow-hidden">
         <Image
           className="object-cover h-80 rounded-md transition"
@@ -32,20 +33,20 @@ const RecipeItems = async ({ recipe }: { recipe: RecipeProps }) => {
         />
       </div>
       <div className="flex items-center gap-2">
-        <div className="bg-secondary/75 w-fit mt-1 px-2 py-1 rounded-lg">
-          <p className="text-xs text-white">{cuisine}</p>
+        <div className="bg-secondary w-fit mt-1 px-2 py-1 rounded-lg">
+          <p className="text-xs text-white dark:text-foreground">{cuisine}</p>
         </div>
-        <div className="bg-accent/75 w-fit mt-1 px-2 py-1 rounded-lg">
-          <p className="text-xs text-white">{diet}</p>
+        <div className="bg-accent w-fit mt-1 px-2 py-1 rounded-lg">
+          <p className="text-xs dark:text-foreground text-white">{diet}</p>
         </div>
       </div>
       <div className="flex justify-between">
         <h2 className="font-semibold text-md capitalize">{name}</h2>
       </div>
       <Link href={`/recipes/${id}`}>
-        <button className="bg-accent text-white transition rounded-md w-full p-3 hover:bg-[#5ba1ca]">
+        <Button className="w-full dark:bg-background dark:border-none">
           View Recipe
-        </button>
+        </Button>
       </Link>
     </div>
   );

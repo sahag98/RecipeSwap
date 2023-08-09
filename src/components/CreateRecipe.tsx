@@ -14,6 +14,9 @@ import "react-quill/dist/quill.snow.css";
 
 import RecipeFilters from "./RecipeFilters";
 import DietFilter from "./DietFilter";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Button } from "./ui/button";
 
 const QuillNoSSRWrapper = dynamic(() => import("react-quill"), { ssr: false });
 // const QuillNoSSRWrapper = dynamic(import("react-quill"), {
@@ -136,16 +139,15 @@ const CreateRecipe = () => {
   return (
     <form
       onSubmit={handleUpload}
-      className="flex flex-col bg-gray-200 my-3 p-3 gap-3 rounded-md"
+      className="flex flex-col bg-gray-200 dark:bg-primary-foreground my-3 p-3 gap-3 rounded-md"
     >
       <div className="flex flex-col gap-1">
         <label htmlFor="recipeName" className="font-medium text-sm">
           Recipe Name
         </label>
-        <input
+        <Input
           name="recipeName"
           required
-          className="rounded-md text-sm px-2 py-3 outline-none"
           type="text"
           placeholder="Chicken Shawerma"
           value={recipeName}
@@ -156,9 +158,8 @@ const CreateRecipe = () => {
         <label htmlFor="recipeName" className="font-medium text-sm ">
           Summary (Optional)
         </label>
-        <textarea
+        <Textarea
           name="summary"
-          className=" rounded-md px-2 py-3  h-20 text-sm outline-none "
           placeholder="For the best results, it’s best to marinate the chicken overnight."
           value={summary}
           onChange={(e) => setSummary(e.target.value)}
@@ -169,7 +170,7 @@ const CreateRecipe = () => {
           Ingredients
         </label>
         <QuillNoSSRWrapper
-          className="bg-primary rounded-md"
+          className="bg-primary dark:bg-background dark:placeholder:text-muted-foreground rounded-md"
           modules={modules}
           placeholder="Chicken, olive oil, lemon"
           value={ingredients}
@@ -182,7 +183,7 @@ const CreateRecipe = () => {
           Instructions
         </label>
         <QuillNoSSRWrapper
-          className="bg-primary rounded-md"
+          className="bg-primary dark:bg-background rounded-md"
           modules={modules}
           placeholder="Mix marinade"
           value={instructions}
@@ -194,9 +195,8 @@ const CreateRecipe = () => {
         <label htmlFor="servings" className="font-medium text-sm ">
           Number of Servings (Optional)
         </label>
-        <input
+        <Input
           name="servings"
-          className=" rounded-md px-2 py-3  text-sm outline-none"
           type="number"
           placeholder="Enter number of servings"
           value={servings}
@@ -207,9 +207,8 @@ const CreateRecipe = () => {
         <label htmlFor="time" className="font-medium text-sm">
           Ready in Time (Optional)
         </label>
-        <input
+        <Input
           name="time"
-          className=" rounded-md px-2 py-3  text-sm outline-none"
           type="number"
           placeholder="Enter the ready in time"
           value={readyIn}
@@ -232,11 +231,11 @@ const CreateRecipe = () => {
       </div>
       <label>
         {!file && (
-          <div className="h-60 cursor-pointer bg-accent/20 p-8 flex rounded-lg flex-col justify-center items-center">
-            <p className="font-bold text-4xl">
+          <div className="h-60 cursor-pointer bg-primary dark:bg-background p-8 flex rounded-lg flex-col justify-center items-center">
+            <p className="font-bold dark:text-foreground text-4xl">
               <AiOutlineCloudUpload />
             </p>
-            <p>Click to upload (Required)</p>
+            <p className="dark:text-foreground">Click to upload (Required)</p>
             <input
               type="file"
               name="upload-image"
@@ -263,19 +262,14 @@ const CreateRecipe = () => {
         )}
       </label>
       <div className="flex justify-end space-x-2">
-        <button
+        <Button
           type="button"
           onClick={() => router.push("/recipes")}
-          className="bg-primary border border-accent px-4 py-2 hover:bg-accent/5 transition text-accent rounded-md"
+          variant={"outline"}
         >
           Cancel
-        </button>
-        <button
-          type="submit"
-          className="bg-accent px-4 py-2 hover:bg-accent/80 transition text-white rounded-md"
-        >
-          {uploading ? "Submitting..." : "Submit"}
-        </button>
+        </Button>
+        <Button type="submit">{uploading ? "Submitting..." : "Submit"}</Button>
       </div>
     </form>
   );

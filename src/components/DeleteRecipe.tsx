@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 import { useSupabase } from "./supabase-provider";
 import { useRouter } from "next/navigation";
 import { MdClose } from "react-icons/md";
+import { Button } from "./ui/button";
 
 type editRecipeProps = {
   id: number;
@@ -99,12 +100,9 @@ export default function DeleteRecipe({ id }: editRecipeProps) {
                     <p className="text-center">
                       Are you sure you want to delete this recipe?
                     </p>
-                    <button
-                      type="submit"
-                      className="inline-flex w-full justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-                    >
+                    <Button type="submit" variant={"destructive"}>
                       {deleting ? "Deleting" : "Delete"}
-                    </button>
+                    </Button>
                   </form>
                 </Dialog.Panel>
               </Transition.Child>

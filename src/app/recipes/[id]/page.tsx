@@ -106,7 +106,7 @@ const page = async ({ params }: { params: searchParamProps }) => {
     <div className="mb-2">
       <ScrollTop />
       <section className="flex flex-col flex-2 gap-2 mb-2">
-        <div className="max-h-[450px] w-full shadow-md flex justify-center items-center object-fill md:bg-accent/20 lg:bg-accent/20 rounded-lg overflow-hidden">
+        <div className="max-h-[450px] w-full shadow-md flex justify-center items-center object-fill md:bg-accent-hover lg:bg-accent-hover dark:lg:bg-primary-foreground dark:md:bg-primary-foreground rounded-lg overflow-hidden">
           <Image
             loading="lazy"
             className="lg:w-1/2 lg:h-96 h-80 object-cover lg:object-contain"
@@ -119,7 +119,7 @@ const page = async ({ params }: { params: searchParamProps }) => {
         <section className="flex flex-col gap-1">
           <section className="flex justify-between items-center">
             <div>
-              <h1 className="lg:text-xl break-words mt-1 capitalize text-lg font-bold  max-w-1/2 tracking-wide">
+              <h1 className="lg:text-xl dark:text-foreground break-words mt-1 capitalize text-lg font-bold  max-w-1/2 tracking-wide">
                 {recipe[0]?.name}
               </h1>
               <div className="flex items-center gap-2">
@@ -141,11 +141,11 @@ const page = async ({ params }: { params: searchParamProps }) => {
             </div>
             <div className="flex flex-col gap-1 ">
               <div className="flex items-center gap-2">
-                <h2 className="font-semibold text-sm lg:text-base">
+                <h2 className="font-semibold dark:text-foreground text-sm lg:text-base">
                   {profiles[0].full_name}
                 </h2>
                 <Image
-                  className="rounded-full border-gray-200 border w-8 h-8 object-cover"
+                  className="rounded-full dark:border-none border-gray-200 border w-8 h-8 object-cover"
                   src={profiles[0].avatar_url!}
                   alt={profiles[0].avatar_url!}
                   width={40}
@@ -161,7 +161,7 @@ const page = async ({ params }: { params: searchParamProps }) => {
             <h1 className="font-bold text-sm lg:text-base text-secondary">
               Ready In:
             </h1>
-            <p className="font-medium text-sm lg:text-base">
+            <p className="font-medium dark:text-foreground text-sm lg:text-base">
               {recipe[0]?.readyInMinutes
                 ? recipe[0]?.readyInMinutes + " mins"
                 : "N/A"}
@@ -171,36 +171,47 @@ const page = async ({ params }: { params: searchParamProps }) => {
             <h1 className="font-bold text-sm lg:text-base text-secondary">
               Servings:
             </h1>
-            <p className="font-medium text-sm lg:text-base">
+            <p className="font-medium dark:text-foreground text-sm lg:text-base">
               {recipe[0]?.servings ? recipe[0]?.servings : "N/A"}
             </p>
           </div>
-          {/* {session && (
-          <FavoriteButton favorites={favorites} recipesInfo={recipe[0]} />
-        )} */}
         </section>
       </section>
       <section className="flex-1 flex flex-col gap-3">
         {recipe[0].summary && (
           <div>
-            <h2 className="font-bold text-gray-700 text-lg">Summary</h2>
-            <p className="leading-7">{recipe[0]?.summary}</p>
+            <h2 className="font-bold text-gray-700 dark:text-foreground text-lg">
+              Summary
+            </h2>
+            <p className="leading-7 dark:text-foreground/80">
+              {recipe[0]?.summary}
+            </p>
           </div>
         )}
         {recipe[0].ingredients && (
           <div>
-            <h2 className="font-bold text-gray-700 text-lg">Ingredients</h2>
-            <p className="leading-7">{parse(recipe[0]?.ingredients)}</p>
+            <h2 className="font-bold text-gray-700 dark:text-foreground text-lg">
+              Ingredients
+            </h2>
+            <p className="leading-7 dark:text-foreground/80">
+              {parse(recipe[0]?.ingredients)}
+            </p>
           </div>
         )}
         <div>
-          <h2 className="font-bold text-gray-700 text-lg">Instructions</h2>
-          <p className="leading-7">{parse(recipe[0]?.instructions)}</p>
+          <h2 className="font-bold text-gray-700 dark:text-foreground text-lg">
+            Instructions
+          </h2>
+          <p className="leading-7 dark:text-foreground/80">
+            {parse(recipe[0]?.instructions)}
+          </p>
         </div>
 
         <div>
           <section className="flex items-center mb-1 gap-1">
-            <h2 className="font-bold text-gray-700">Reviews</h2>
+            <h2 className="font-bold text-gray-700 text-lg dark:text-foreground">
+              Reviews
+            </h2>
             <span className="text-sm mt-[1px]">({reviews?.length})</span>
           </section>
 
@@ -210,7 +221,10 @@ const page = async ({ params }: { params: searchParamProps }) => {
           )}
           <div className="mt-4">
             {reviews?.map((review) => (
-              <div className="mt-3 bg-accent/20 p-2 rounded-md" key={review.id}>
+              <div
+                className="mt-3 bg-accent-hover dark:bg-primary-foreground p-2 rounded-md"
+                key={review.id}
+              >
                 <div className="flex items-center justify-between mb-2">
                   <section className="flex items-center gap-2">
                     <Image

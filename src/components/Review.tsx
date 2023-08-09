@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { Dialog, Transition } from "@headlessui/react";
 import { toast } from "react-hot-toast";
+import { Input } from "./ui/input";
 
 const Review = ({ RecipeId }: any) => {
   const { supabase, session } = useSupabase();
@@ -119,16 +120,15 @@ const Review = ({ RecipeId }: any) => {
           onSubmit={addReview}
           className="flex items-center justify-between gap-3"
         >
-          <input
+          <Input
             required
-            className="bg-secondary/20 outline-none text-sm rounded-md w-full px-2 py-3"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             type="text"
             placeholder="Write a review..."
           />
-          <button className="bg-accent hover:bg-accent/90 transition rounded-full p-3 text-white">
-            <AiOutlineSend className="w-5 h-5" />
+          <button className="bg-accent hover:bg-accent-hover transition rounded-full p-3 text-white hover:text-accent dark:hover:bg-primary-foreground">
+            <AiOutlineSend className="w-4 h-4" />
           </button>
         </form>
       </div>

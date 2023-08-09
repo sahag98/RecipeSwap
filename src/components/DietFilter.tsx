@@ -24,7 +24,7 @@ const DietFilter = ({ options, diet, setDiet }: CustomFilterProps) => {
       >
         <div className="rounded-md z-10">
           {/* Button for the listbox */}
-          <Listbox.Button className="flex lg:w-44 w-40 items-center justify-between p-2 rounded-md border bg-[#f2f2f2] border-accent">
+          <Listbox.Button className="flex lg:w-44 w-40 items-center justify-between p-2 rounded-md border bg-[#f2f2f2] dark:bg-background border-accent">
             <span className="block truncate font-medium mr-2">
               {diet ? diet : options[0]}
             </span>
@@ -45,8 +45,8 @@ const DietFilter = ({ options, diet, setDiet }: CustomFilterProps) => {
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 px-4 ${
                       active
-                        ? "bg-accent text-white cursor-pointer"
-                        : "text-gray-900"
+                        ? "bg-accent dark:bg-background text-white cursor-pointer"
+                        : "text-gray-900 dark:text-foreground"
                     }`
                   }
                   value={option}

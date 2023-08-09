@@ -51,7 +51,7 @@ const CustomFilter = ({ options, title }: CustomFilterProps) => {
                     `relative cursor-default select-none py-2 px-4 ${
                       active
                         ? "bg-accent text-white cursor-pointer"
-                        : "text-gray-900"
+                        : "text-gray-900 dark:text-foreground"
                     }`
                   }
                   value={option}
