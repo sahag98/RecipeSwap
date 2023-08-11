@@ -17,6 +17,7 @@ type editRecipeProps = {
   id: number;
   image: string;
   instructions: string;
+  ingredients: string | null;
   name: string;
   mins: number | null;
   servings: number | null;
@@ -62,6 +63,7 @@ export default function EditRecipe({
   name,
   mins,
   summary,
+  ingredients,
   instructions,
   servings,
   image,
@@ -71,6 +73,9 @@ export default function EditRecipe({
   const { supabase, session } = useSupabase();
   const [newRecipeName, setNewRecipeName] = useState(name);
   const [newSummary, setNewSummary] = useState(summary ? summary : "");
+  const [newIngredients, setNewIngredients] = useState(
+    ingredients ? ingredients : ""
+  );
   const [newInstructions, setNewInstructions] = useState(instructions);
   const [newServings, setNewServings] = useState(servings ? servings : 0);
   const [newReadyIn, setNewReadyIn] = useState(mins ? mins : 0);
@@ -155,7 +160,7 @@ export default function EditRecipe({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-lg relative transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-lg relative transform overflow-hidden rounded-2xl bg-white dark:bg-primary-foreground p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium text-center leading-6 text-secondary"
@@ -165,14 +170,14 @@ export default function EditRecipe({
 
                   <form
                     onSubmit={editRecipe}
-                    className="w-full flex flex-col mt-2 gap-2 bg-gray-200 rounded-md p-3"
+                    className="w-full flex flex-col mt-2 gap-2 bg-gray-200 rounded-md bg-primary-foreground p-3"
                   >
                     <div className="flex flex-col gap-1">
                       <label
                         htmlFor="recipeName"
                         className="font-medium text-secondary"
                       >
-                        Edit name
+                        Edit Name
                       </label>
                       <Input
                         name="recipeName"
@@ -187,7 +192,7 @@ export default function EditRecipe({
                         htmlFor="recipeName"
                         className="font-medium text-secondary"
                       >
-                        Edit summary
+                        Edit Summary
                       </label>
                       <Textarea
                         name="summary"
@@ -201,10 +206,25 @@ export default function EditRecipe({
                         htmlFor="instructions"
                         className="font-medium text-secondary"
                       >
+                        Edit Ingredients
+                      </label>
+                      <QuillNoSSRWrapper
+                        className="bg-background dark:bg-background rounded-md"
+                        modules={modules}
+                        value={newIngredients}
+                        onChange={setNewIngredients}
+                        formats={formats}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <label
+                        htmlFor="instructions"
+                        className="font-medium text-secondary"
+                      >
                         Edit Instructions
                       </label>
                       <QuillNoSSRWrapper
-                        className="bg-primary rounded-md"
+                        className="bg-primary dark:bg-background rounded-md"
                         modules={modules}
                         value={newInstructions}
                         onChange={setNewInstructions}

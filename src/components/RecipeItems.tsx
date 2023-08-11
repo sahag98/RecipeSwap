@@ -44,7 +44,7 @@ const RecipeItems = async ({ recipe }: { recipe: RecipeProps }) => {
         <h2 className="font-semibold text-md capitalize">{name}</h2>
       </div>
       <Link href={`/recipes/${id}`}>
-        <Button className="w-full dark:bg-background dark:border-none">
+        <Button className="w-full dark:bg-background dark:border-none dark:hover:bg-accent dark:hover:text-primary">
           View Recipe
         </Button>
       </Link>

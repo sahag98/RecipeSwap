@@ -35,7 +35,7 @@ export default function MyModal() {
         <button
           type="button"
           onClick={openModal}
-          className="flex items-center border text-accent border-accent p-2 rounded-md hover:bg-accent dark:hover:bg-primary-foreground transition hover:text-white gap-2 cursor-pointer"
+          className="flex items-center border text-accent border-accent p-2 rounded-md hover:bg-accent dark:hover:bg-accent transition hover:text-white gap-2 cursor-pointer"
         >
           <FiFilter className="w-6 h-6" />
         </button>

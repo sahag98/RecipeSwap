@@ -109,7 +109,7 @@ const page = async ({ params }: { params: searchParamProps }) => {
         <div className="max-h-[450px] w-full shadow-md flex justify-center items-center object-fill md:bg-accent-hover lg:bg-accent-hover dark:lg:bg-primary-foreground dark:md:bg-primary-foreground rounded-lg overflow-hidden">
           <Image
             loading="lazy"
-            className="lg:w-1/2 lg:h-96 h-80 object-cover lg:object-contain"
+            className="lg:w-2/3 lg:h-[450px] h-80 object-cover lg:object-contain"
             src={recipe[0]?.image}
             alt={`picture`}
             width={450}

@@ -18,6 +18,7 @@ type createdRecipeProps = {
   readyInMinutes: number | null;
   servings: number | null;
   summary: string | null;
+  ingredients: string | null;
   user_id: string;
 };
 
@@ -27,7 +28,7 @@ const ProfileRecipes = ({
   createdRecipes: createdRecipeProps;
 }) => {
   return (
-    <div className="bg-primary relative shadow-md shadow-[#ebebeb]  border flex h-32 mb-5 gap-2 w-full dark:shadow-none dark:bg-primary-foreground overflow-hidden rounded-xl">
+    <div className="bg-primary relative shadow-md shadow-[#ebebeb] dark:border-none  border flex h-32 mb-5 gap-2 w-full dark:shadow-none dark:bg-primary-foreground overflow-hidden rounded-xl">
       {createdRecipes.image && (
         <Image
           className="w-1/3 lg:w-1/4 border-r object-cover h-full"
@@ -64,6 +65,7 @@ const ProfileRecipes = ({
           name={createdRecipes.name}
           mins={createdRecipes.readyInMinutes}
           summary={createdRecipes.summary}
+          ingredients={createdRecipes.ingredients}
           instructions={createdRecipes.instructions}
           servings={createdRecipes.servings}
           image={createdRecipes.image}

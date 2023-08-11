@@ -139,7 +139,7 @@ const Avatar = ({ avatar }: { avatar: avatarProps }) => {
           />
         )}
 
-        <div className="bg-accent text-white hover:bg-primary hover:border hover:border-accent hover:text-accent transition cursor-pointer flex justify-center items-center rounded-full absolute bottom-0 right-0 w-8 h-8">
+        <div className="bg-accent dark:hover:bg-primary-foreground text-white hover:bg-primary hover:border hover:border-accent hover:text-accent transition cursor-pointer flex justify-center items-center rounded-full absolute bottom-0 right-0 w-8 h-8">
           <AiOutlinePlus onClick={openModal} className=" w-5 h-5" />
         </div>
 
@@ -169,10 +169,10 @@ const Avatar = ({ avatar }: { avatar: avatarProps }) => {
                     leaveFrom="opacity-100 scale-100"
                     leaveTo="opacity-0 scale-95"
                   >
-                    <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-primary-foreground p-6 text-left align-middle shadow-xl transition-all">
                       <Dialog.Title
                         as="h3"
-                        className="text-lg flex items-center justify-center text-center font-medium leading-6 text-secondary"
+                        className="text-lg flex items-center justify-center text-center font-medium mb-5 leading-6 text-secondary"
                       >
                         Change Avatar
                         <BsFillPersonFill className="ml-2" size={30} />
@@ -180,11 +180,13 @@ const Avatar = ({ avatar }: { avatar: avatarProps }) => {
 
                       <label>
                         {!file && (
-                          <div className="h-60 mt-2 cursor-pointer bg-accent/20 p-8 flex rounded-lg flex-col justify-center items-center">
-                            <p className="font-bold text-4xl">
+                          <div className="h-60 mt-2 cursor-pointer bg-accent/20 dark:bg-background p-8 flex rounded-lg flex-col justify-center items-center">
+                            <p className="font-bold dark:text-foreground text-4xl">
                               <AiOutlineCloudUpload />
                             </p>
-                            <p>Click to upload</p>
+                            <p className="dark:text-foreground">
+                              Click to upload
+                            </p>
                             <input
                               type="file"
                               name="upload-image"
@@ -196,7 +198,7 @@ const Avatar = ({ avatar }: { avatar: avatarProps }) => {
                         )}
                         {file && (
                           <>
-                            <div className="h-96 mt-2 cursor-pointer relative bg-[#d5d8d8]flex flex-col justify-center items-center">
+                            <div className="h-96 mt-2 cursor-pointer relative bg-[#d5d8d8] dark:bg-primary-foreground flex flex-col justify-center items-center">
                               <Image
                                 className="w-full h-full rounded-lg object-cover"
                                 src={URL.createObjectURL(file)}
@@ -216,7 +218,6 @@ const Avatar = ({ avatar }: { avatar: avatarProps }) => {
                           disabled={uploading}
                           size={"lg"}
                           variant={"outline"}
-                          className="space-x-2 text-accent"
                         >
                           Cancel
                         </Button>
@@ -261,12 +262,12 @@ const Avatar = ({ avatar }: { avatar: avatarProps }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white dark:bg-primary-foreground p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-lg flex items-center justify-center text-center font-medium leading-6 mb-2 text-secondary"
                   >
-                    Change User Name
+                    Change Username
                     <BsFillPersonFill className="ml-2" size={30} />
                   </Dialog.Title>
                   <Input

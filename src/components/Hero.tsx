@@ -13,7 +13,7 @@ const Hero = async () => {
   } = await supabase.auth.getSession();
 
   return (
-    <main className="flex w-full items-center h-full justify-center flex-col gap-3">
+    <main className="flex bg-th-background w-full items-center h-full justify-center flex-col gap-3">
       <div className="mb-12 rounded-full flex flex-col justify-center items-center gap-2">
         <Image
           src="/undraw_cooking_p7m1.svg"

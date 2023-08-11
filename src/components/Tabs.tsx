@@ -23,6 +23,7 @@ type recipesProps =
       id: number;
       image: string;
       instructions: string;
+      ingredients: string | null;
       name: string;
       readyInMinutes: number | null;
       servings: number | null;
