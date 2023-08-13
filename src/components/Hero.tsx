@@ -35,8 +35,7 @@ const Hero = async () => {
             <Button
               data-cy="started"
               size={"lg"}
-              // className=" text-lg text-accent-foreground "
-              className="button"
+              className=" text-lg text-accent-foreground "
             >
               Get Started
             </Button>

@@ -117,7 +117,7 @@ const Likes = ({ recipeId, userId, likes, isLikedByMe }: likeProps) => {
                       onClick={handleGoogleLogin}
                       className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                     >
-                      <h2 className="text-accent dark:text-white font-semibold flex items-center gap-2">
+                      <h2 className="text-white font-semibold flex items-center gap-2">
                         <span>
                           <FcGoogle className="w-7 h-7" />
                         </span>
