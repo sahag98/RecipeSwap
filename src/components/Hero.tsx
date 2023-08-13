@@ -32,7 +32,12 @@ const Hero = async () => {
         </p>
         <section className="flex items-center justify-center w-full gap-3">
           <Link className="  flex items-center justify-center" href="/recipes">
-            <Button size={"lg"} className=" text-lg text-accent-foreground ">
+            <Button
+              data-cy="started"
+              size={"lg"}
+              // className=" text-lg text-accent-foreground "
+              className="button"
+            >
               Get Started
             </Button>
             {/* <button className=" bg-accent border border-accent w-full shadow-lg mt-1 font-medium text-white px-4 py-3  rounded-md hover:bg-accent/80 transition">

@@ -98,7 +98,7 @@ const Likes = ({ recipeId, userId, likes, isLikedByMe }: likeProps) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl dark:bg-primary-foreground bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-secondary"
@@ -117,7 +117,7 @@ const Likes = ({ recipeId, userId, likes, isLikedByMe }: likeProps) => {
                       onClick={handleGoogleLogin}
                       className="inline-flex w-full items-center justify-center rounded-md bg-accent bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                     >
-                      <h2 className="text-accent font-semibold flex items-center gap-2">
+                      <h2 className="text-accent dark:text-white font-semibold flex items-center gap-2">
                         <span>
                           <FcGoogle className="w-7 h-7" />
                         </span>

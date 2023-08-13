@@ -41,7 +41,10 @@ const Navbar = ({ avatar }: any) => {
       </Link>
       <ul className="flex items-center gap-5">
         <Link href="/recipes">
-          <li className="font-medium hover:text-accent transition text-md lg:text-base text-secondary">
+          <li
+            id="#Recipes"
+            className="font-medium hover:text-accent transition text-md lg:text-base text-secondary"
+          >
             Recipes
           </li>
         </Link>
@@ -72,7 +75,7 @@ const Navbar = ({ avatar }: any) => {
                 />
               </Menu.Button>
             ) : (
-              <Button onClick={handleGoogleLogin}>
+              <Button onClick={handleGoogleLogin} data-cy="submit">
                 <h2 className=" font-semibold flex items-center gap-2">
                   <span>
                     <FcGoogle className="w-7 h-7" />

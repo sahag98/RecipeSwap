@@ -180,6 +180,7 @@ export default function EditRecipe({
                         Edit Name
                       </label>
                       <Input
+                        autoFocus
                         name="recipeName"
                         type="text"
                         placeholder="Chicken Shawerma"

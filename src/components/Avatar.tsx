@@ -296,7 +296,10 @@ const Avatar = ({ avatar }: { avatar: avatarProps }) => {
         </Dialog>
       </Transition>
       <button
-        onClick={() => setNameIsOpen(true)}
+        onClick={() => {
+          setNameIsOpen(true);
+          () => setFile(null);
+        }}
         className="relative flex items-center gap-2"
       >
         <h1 className="font-bold text-lg">{avatar[0].full_name}</h1>
