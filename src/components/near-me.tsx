@@ -48,10 +48,10 @@ const NearMe = ({ recipe }: { recipe: string }) => {
   return (
     <div>
       <button
-        className="underline text-accent text-xs lg:text-sm font-medium"
+        className="underline text-accent text-sm font-medium"
         onClick={() => setIsOpen(true)}
       >
-        Find the nearest {recipe} Place
+        Find the nearest {recipe} restaurant
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
