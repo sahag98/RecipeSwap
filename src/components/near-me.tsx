@@ -42,6 +42,7 @@ const NearMe = ({ recipe }: { recipe: string }) => {
     // Open the Google Maps URL in a new tab
     window.open(mapsURL, "_blank");
     form.reset();
+    closeModal();
   };
 
   return (
