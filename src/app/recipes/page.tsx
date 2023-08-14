@@ -33,7 +33,10 @@ const Recipes = async ({ searchParams }: { searchParams: HomeProps }) => {
   let recipeData: any = [];
 
   if (JSON.stringify(searchParams) === "{}") {
-    const { data: recipes } = await supabase.from("recipes").select("*");
+    const { data: recipes } = await supabase
+      .from("recipes")
+      .select("*")
+      .order("id", { ascending: false });
     recipeData = recipes;
   } else {
     const { data: recipes } = await supabase
