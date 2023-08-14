@@ -40,7 +40,8 @@ const Recipes = async ({ searchParams }: { searchParams: HomeProps }) => {
       .from("recipes")
       .select("*")
       .eq("cuisine", searchParams.cuisines || "")
-      .eq("diet", searchParams.diets || "");
+      .eq("diet", searchParams.diets || "")
+      .order("id", { ascending: false });
     recipeData = recipes;
   }
 
