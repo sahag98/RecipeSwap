@@ -13,6 +13,7 @@ import Likes from "@/components/Likes";
 import parse from "html-react-parser";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import Save from "@/components/Save";
+import NearMe from "@/components/near-me";
 
 export type searchParamProps = {
   id: any;
@@ -122,24 +123,28 @@ const page = async ({ params }: { params: searchParamProps }) => {
               <h1 className="lg:text-xl dark:text-foreground break-words mt-1 capitalize text-lg font-bold  max-w-1/2 tracking-wide">
                 {recipe[0]?.name}
               </h1>
-              <div className="flex items-center gap-2">
-                <Likes
-                  recipeId={recipe[0].id}
-                  likes={likes}
-                  isLikedByMe={isLikedByMe}
-                  userId={session ? session?.user.id : null}
-                />
-                <Save
-                  recipeId={recipe[0].id}
-                  recipeName={recipe[0].name}
-                  recipeImg={recipe[0].image}
-                  saves={saves}
-                  isSavedByMe={isSavedByMe}
-                  userId={session ? session?.user.id : null}
-                />
+
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <Likes
+                    recipeId={recipe[0].id}
+                    likes={likes}
+                    isLikedByMe={isLikedByMe}
+                    userId={session ? session?.user.id : null}
+                  />
+
+                  <Save
+                    recipeId={recipe[0].id}
+                    recipeName={recipe[0].name}
+                    recipeImg={recipe[0].image}
+                    saves={saves}
+                    isSavedByMe={isSavedByMe}
+                    userId={session ? session?.user.id : null}
+                  />
+                </div>
               </div>
             </div>
-            <div className="flex flex-col gap-1 ">
+            <div className="flex flex-col ">
               <div className="flex items-center gap-2">
                 <h2 className="font-semibold dark:text-foreground text-sm lg:text-base">
                   {profiles[0].full_name}
@@ -152,28 +157,31 @@ const page = async ({ params }: { params: searchParamProps }) => {
                   height={40}
                 />
               </div>
-              <h2 className="text-sm text-gray-500">
+              <h2 className="text-xs lg:text-sm text-gray-500">
                 {format(recipe[0].created_at!)}
               </h2>
             </div>
           </section>
-          <div className="flex items-center gap-1">
-            <h1 className="font-bold text-sm lg:text-base text-secondary">
-              Ready In:
-            </h1>
-            <p className="font-medium dark:text-foreground text-sm lg:text-base">
-              {recipe[0]?.readyInMinutes
-                ? recipe[0]?.readyInMinutes + " mins"
-                : "N/A"}
-            </p>
-          </div>
-          <div className="flex items-center gap-1">
-            <h1 className="font-bold text-sm lg:text-base text-secondary">
-              Servings:
-            </h1>
-            <p className="font-medium dark:text-foreground text-sm lg:text-base">
-              {recipe[0]?.servings ? recipe[0]?.servings : "N/A"}
-            </p>
+          <div className="flex flex-col gap-1">
+            <NearMe recipe={recipe[0].name} />
+            <div className="flex items-center gap-1">
+              <h1 className="font-bold text-sm lg:text-base text-secondary">
+                Ready In:
+              </h1>
+              <p className="font-medium dark:text-foreground text-sm lg:text-base">
+                {recipe[0]?.readyInMinutes
+                  ? recipe[0]?.readyInMinutes + " mins"
+                  : "N/A"}
+              </p>
+            </div>
+            <div className="flex items-center gap-1">
+              <h1 className="font-bold text-sm lg:text-base text-secondary">
+                Servings:
+              </h1>
+              <p className="font-medium dark:text-foreground text-sm lg:text-base">
+                {recipe[0]?.servings ? recipe[0]?.servings : "N/A"}
+              </p>
+            </div>
           </div>
         </section>
       </section>
