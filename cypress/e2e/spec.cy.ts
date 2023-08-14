@@ -7,3 +7,13 @@ describe("Testing viewing a recipe", () => {
     cy.contains("View Recipe").click();
   });
 });
+
+describe("Google", function () {
+  beforeEach(function () {
+    cy.loginByGoogleApi();
+  });
+
+  it("shows onboarding", function () {
+    cy.contains("Get Started").should("be.visible");
+  });
+});
