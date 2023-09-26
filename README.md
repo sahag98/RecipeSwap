@@ -2,6 +2,8 @@ RecipeSwap
 
 Discover recipes curated by a diverse community of users.
 
+Link: https://recipe-swap.vercel.app/
+
 Tools/frameworks:
 - Nextjs 13 for SSR rendering
 - Supabase for backend/database (supabaseAuth, tables, sql, table policies)
